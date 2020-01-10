@@ -103,13 +103,18 @@ class Education extends Component {
     };
     return (
       <div className="page-wrapper">
-        <h1 className="large text-primary">Add Your Education</h1>
+        <h1 className="large text-primary text-uppercase">
+          Add Your Education
+        </h1>
         <p className="lead">
-          <i className="fas fa-graduation-cap"></i> Add any school,bootcamp, etc
-          that you have attended
+          <i className="fas fa-graduation-cap icon-right"></i>
+          <span className="small">
+            Add any school,bootcamp, etc that you have attended
+          </span>
         </p>
         <SkillsForm
           fields={values}
+          formType="education"
           onChange={this.onChange}
           onCheck={this.onCheck}
           onSubmit={this.onSubmit}

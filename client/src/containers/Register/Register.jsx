@@ -12,6 +12,7 @@ import * as alertsActions from "../../reduxSources/actions/alertActions";
 
 import Input from "../../components/FormElements/Input";
 import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 const mapDispatchToProps = dispatch => ({
   authActions: bindActionCreators(authActions, dispatch),
@@ -62,64 +63,67 @@ class Register extends Component {
     const { name, email, password, password2 } = this.state;
     return (
       <div className="page-wrapper">
-        <h1 className="large text-primary">Sign Up</h1>
-        <p className="lead">
-          <i className="fas fa-user" /> Create Your Account
-        </p>
-        <form className="form" action="create-profile.html">
-          <div className="form-group">
-            <Input
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={this.onChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <Input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              required
-            />
-            <small className="form-text">
-              This site uses Gravatar so if you want a profile image, use a
-              Gravatar email
-            </small>
-          </div>
-          <div className="form-group">
-            <Input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={this.onChange}
-              minLength="6"
-            />
-          </div>
-          <div className="form-group">
-            <Input
-              type="password"
-              placeholder="Confirm Password"
-              name="password2"
-              minLength="6"
-              value={password2}
-              onChange={this.onChange}
-            />
-          </div>
-          <Button
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.onSubmit}
-          >
-            Register
-          </Button>
-        </form>
-        <p className="my-1">
+        <Card className="form-container">
+          <h1 className="large text-primary text-uppercase text-center">
+            Sign Up
+          </h1>
+          <form className="form">
+            <div className="form-group">
+              <Input
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={name}
+                onChange={this.onChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                type="email"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={this.onChange}
+                required
+              />
+              <small className="form-text">
+                This site uses Gravatar so if you want a profile image, use a
+                Gravatar email
+              </small>
+            </div>
+            <div className="form-group">
+              <Input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                minLength="6"
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                type="password"
+                placeholder="Confirm Password"
+                name="password2"
+                minLength="6"
+                value={password2}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="button-container">
+              <Button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.onSubmit}
+              >
+                Register
+              </Button>
+            </div>
+          </form>
+        </Card>
+        <p className="my-1 text-center">
           Already have an account? <Link to={ROUTES.LOGIN()}>Sign In</Link>
         </p>
       </div>

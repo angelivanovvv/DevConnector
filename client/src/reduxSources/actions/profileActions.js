@@ -22,6 +22,10 @@ const profileError = error => ({
   error: transformError(error)
 });
 
+const profileDelete = () => ({
+  type: actionTypes.DELETE_PROFILE
+});
+
 export const clearProfile = () => ({
   type: actionTypes.CLEAR_PROFILE
 });
@@ -58,9 +62,24 @@ export const createProfile = (formData, edit = false) => {
   };
 };
 
+export const deleteProfile = () => {
+  return async dispatch => {
+    try {
+      const response = await Axios.delete("/api/profile");
+      dispatch(clearProfile());
+      dispatch(profileDelete());
+      dispatch(
+        alertActions.alert("Your accont has been permananly deleted", "danger")
+      );
+    } catch (error) {
+      dispatch(profileError(error));
+    }
+  };
+};
+
 export const addExperience = formData => {
   return async dispatch => {
-    let alertMessage = "Experience Added";
+    const alertMessage = "Experience Added";
     try {
       const response = await Axios.put("/api/profile/experience", formData);
       dispatch(profileUpdateSuccess(response.data));
@@ -77,9 +96,22 @@ export const addExperience = formData => {
   };
 };
 
+export const deleteExperience = id => {
+  return async dispatch => {
+    const alertmessage = "Experience Deleted";
+    try {
+      const response = await Axios.delete(`/api/profile/experience/${id}`);
+      dispatch(profileUpdateSuccess(response.data));
+      dispatch(alertActions.alert(alertmessage, "success"));
+    } catch (error) {
+      dispatch(profileError(error));
+    }
+  };
+};
+
 export const addEducation = formData => {
   return async dispatch => {
-    let alertMessage = "Education Added";
+    const alertMessage = "Education Added";
     try {
       const response = await Axios.put("/api/profile/education", formData);
       dispatch(profileUpdateSuccess(response.data));
@@ -91,6 +123,19 @@ export const addEducation = formData => {
         errors.forEach(error =>
           dispatch(alertActions.alert(error.msg, "danger"))
         );
+      dispatch(profileError(error));
+    }
+  };
+};
+
+export const deleteEducation = id => {
+  return async dispatch => {
+    const alertmessage = "Education Deleted";
+    try {
+      const response = await Axios.delete(`/api/profile/education/${id}`);
+      dispatch(profileUpdateSuccess(response.data));
+      dispatch(alertActions.alert(alertmessage, "success"));
+    } catch (error) {
       dispatch(profileError(error));
     }
   };

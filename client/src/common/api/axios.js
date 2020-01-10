@@ -1,14 +1,14 @@
 import Axios from "axios";
 import { config } from "./api-config";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
 // import * as authActions from "../../reduxSources/actions/authActions";
 // import { ROUTES_ACTIONS } from "../../constants/clientRoutes";
 
-import initStore from "../../reduxSources/store";
+// import initStore from "../../reduxSources/store";
 
-const history = createBrowserHistory();
-const store = initStore(history);
+// const history = createBrowserHistory();
+// const store = initStore(history);
 
 const instance = Axios.create({
   baseURL: config.baseURL,

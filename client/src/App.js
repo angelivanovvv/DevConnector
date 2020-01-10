@@ -12,12 +12,12 @@ import Layout from "./containers/Layout";
 
 import "./App.css";
 
+const history = createBrowserHistory();
+const store = initStore(history);
+
 if (LocalStorage.get("token")) {
   setAuthToken(LocalStorage.get("token"));
 }
-
-const history = createBrowserHistory();
-const store = initStore(history);
 
 const App = () => {
   useEffect(() => {

@@ -17,9 +17,13 @@ import {
 } from "../../reduxSources/selectors/profileSelectors";
 
 import * as profileActions from "../../reduxSources/actions/profileActions";
-import { ROUTES } from "../../constants/clientRoutes";
 
+import { ROUTES } from "../../constants/clientRoutes";
+import { experienceRows, educationRows } from "../../constants/config";
+
+import Card from "../../components/Card";
 import Spinner from "../../components/Spinner";
+import Button from "../../components/Button";
 import DashboardActions from "../../components/Dashboard/Actions";
 import DashboardTable from "../../components/Dashboard/Table";
 
@@ -62,41 +66,124 @@ class Dashbooard extends Component {
     getProfile();
   }
 
+  deleteExperience = id => {
+    const {
+      profileActions: { deleteExperience }
+    } = this.props;
+    deleteExperience(id);
+  };
+
+  deleteEducation = id => {
+    const {
+      profileActions: { deleteEducation }
+    } = this.props;
+    deleteEducation(id);
+  };
+
+  deleteProfile = () => {
+    const {
+      profileActions: { deleteProfile }
+    } = this.props;
+    deleteProfile();
+  };
+
   render() {
-    const { user, profile, isLoading, experience } = this.props;
+    const { user, profile, isLoading, experience, education } = this.props;
     return (
       <div className="page-wrapper">
         {isLoading ? (
           <Spinner />
         ) : (
           <Fragment>
-            <h1 className="large text-primary">Dashboard</h1>
-            <p className="lead">
-              <i className="fas fa-user"> </i>
-              Welcome {user && user !== null ? user.get("name") : null}
-            </p>
+            <h1 className="large text-primary text-uppercase">Dashboard</h1>
+
             {profile !== null ? (
               <Fragment>
-                <DashboardActions
-                  profile="Edit Profile"
-                  experience="Add Experience"
-                  education="Add Education"
-                  profileLink={ROUTES.EDIT_PROFILE()}
-                  experienceLink={ROUTES.ADD_EXPERIENCE()}
-                  educationLink={ROUTES.ADD_EDUCATION()}
-                />
-                <DashboardTable experience={experience} />
+                <Card className="my-2-bottom">
+                  <p className="lead">
+                    <i className="fas fa-user icon-right"></i>
+                    <span className="small">
+                      Welcome {user && user !== null ? user.get("name") : null}!
+                    </span>
+                  </p>
+                  <DashboardActions
+                    profile="Edit Profile"
+                    experience="Add Experience"
+                    education="Add Education"
+                    profileLink={ROUTES.EDIT_PROFILE()}
+                    experienceLink={ROUTES.ADD_EXPERIENCE()}
+                    educationLink={ROUTES.ADD_EDUCATION()}
+                  />
+                </Card>
+                <Card className="my-2-bottom">
+                  <h2 className="my-2-bottom text-center text-uppercase">
+                    Your experience
+                  </h2>
+                  {experience.size === 0 ? (
+                    <h2 className="my-2 empty-message text-center">
+                      You don't have any experience added to your profile.
+                    </h2>
+                  ) : (
+                    <DashboardTable
+                      rows={experienceRows}
+                      results={experience}
+                      onClick={this.deleteExperience}
+                    />
+                  )}
+                </Card>
+                <Card className="my-2-bottom">
+                  <h2 className="my-2-bottom text-center text-uppercase">
+                    Your education
+                  </h2>
+                  {education.size === 0 ? (
+                    <h2 className="my-2 empty-message text-center">
+                      You don't have any education added to your profile.
+                    </h2>
+                  ) : (
+                    <DashboardTable
+                      rows={educationRows}
+                      results={education}
+                      onClick={this.deleteEducation}
+                    />
+                  )}
+                </Card>
+                <Card className="my-2-bottom">
+                  <h2 className="my-2-bottom text-center text-uppercase">
+                    Your Account
+                  </h2>
+                  <h2 className="my-2 empty-message text-center">
+                    You don't want to have your account anymore? You can delete
+                    account here.
+                  </h2>
+                  <div className="button-container">
+                    <Button
+                      className="btn btn-danger my-2-top"
+                      onClick={this.deleteProfile}
+                    >
+                      <i className="fas fa-user icon-right"></i>
+                      <span>Delete my accont</span>
+                    </Button>
+                  </div>
+                </Card>
               </Fragment>
             ) : (
-              <Fragment>
-                <p>You haven't yet setup profile, lease add some info</p>
+              <Card>
+                <p className="lead">
+                  <i className="fas fa-user icon-right"></i>
+                  <span className="small">
+                    Welcome {user && user !== null ? user.get("name") : null}!
+                  </span>
+                </p>
+                <p className="small">
+                  You haven't yet setup profile, lease add some info.
+                </p>
                 <Link
                   className="btn btn-primary my-1"
                   to={ROUTES.CREATE_PROFILE()}
                 >
                   Create Profile
                 </Link>
-              </Fragment>
+              </Card>
             )}
           </Fragment>
         )}

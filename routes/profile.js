@@ -10,6 +10,7 @@ const github = require("../config/github");
 
 const Profile = require("../models/Profile");
 const User = require("../models/User");
+const Post = require("../models/Post");
 
 //@Validation
 const ProfileValidation = () => {
@@ -211,7 +212,8 @@ router
   //@access Private
   .delete("/", auth, async (req, res) => {
     try {
-      //@todo - remove users posts
+      //Remove users posts
+      await Post.deleteMany({ user: req.user.id });
 
       //Remove profile
       await Profile.findOneAndRemove({ user: req.user.id });
@@ -347,4 +349,5 @@ router
       res.status(500).send("Server Error");
     }
   });
+
 module.exports = router;

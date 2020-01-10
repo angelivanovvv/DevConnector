@@ -144,10 +144,14 @@ class EditProfile extends Component {
           <Spinner />
         ) : (
           <Fragment>
-            <h1 className="large text-primary">Edit Your Profile</h1>
+            <h1 className="large text-primary text-uppercase">
+              Edit Your Profile
+            </h1>
             <p className="lead">
-              <i className="fas fa-user"></i> Let's edit some information to
-              make you profile even better
+              <i className="fas fa-user icon-right"></i>
+              <span className="small">
+                Let's edit some information to make you profile even better
+              </span>
             </p>
             <ProfileForm
               {...values}

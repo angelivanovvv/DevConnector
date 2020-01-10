@@ -12,6 +12,7 @@ import * as alertsActions from "../../reduxSources/actions/alertActions";
 
 import Input from "../../components/FormElements/Input";
 import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 const mapDispatchToProps = dispatch => ({
   authActions: bindActionCreators(authActions, dispatch),
@@ -51,38 +52,41 @@ class Login extends Component {
     const { email, password } = this.state;
     return (
       <div className="page-wrapper">
-        <h1 className="large text-primary">Sign In</h1>
-        <p className="lead">
-          <i className="fas fa-user" /> Sign Into Your Account
-        </p>
-        <form className="form" action="create-profile.html">
-          <div className="form-group">
-            <Input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={this.onChange}
-            />
-          </div>
-          <div className="form-group">
-            <Input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={this.onChange}
-            />
-          </div>
-          <Button
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.onSubmit}
-          >
-            Login
-          </Button>
-        </form>
-        <p className="my-1">
+        <Card className="form-container">
+          <h1 className="large text-primary text-uppercase text-center">
+            Sign In
+          </h1>
+          <form className="form">
+            <div className="form-group">
+              <Input
+                type="email"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="button-container">
+              <Button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.onSubmit}
+              >
+                Login
+              </Button>
+            </div>
+          </form>
+        </Card>
+        <p className="my-1 text-center">
           Don't have an account? <Link to={ROUTES.REGISTER()}>Sign Up</Link>
         </p>
       </div>

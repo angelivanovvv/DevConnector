@@ -7,6 +7,7 @@ import Input from "../../FormElements/Input";
 import Select from "../../FormElements/Select";
 import TextArea from "../../FormElements/TextArea";
 import Button from "../../Button";
+import Card from "../../Card";
 
 const ProfileForm = ({
   company,
@@ -31,72 +32,80 @@ const ProfileForm = ({
   const fields = { company, website, location, skills, githubusername };
   return (
     <form className="form">
-      <div className="form-group">
-        <Select
-          name="status"
-          value={status}
-          options={options}
-          onChange={onChange}
-        />
-        <small className="form-text">
-          Give us an idea of where you are at in your career
-        </small>
-      </div>
-      {profileFields(fields).map(field => (
-        <div key={field.get("key")} className="form-group">
-          <Input
-            type={field.get("type")}
-            placeholder={field.get("placeholder")}
-            name={field.get("name")}
-            value={field.get("value")}
+      <Card>
+        <div className="form-group">
+          <Select
+            name="status"
+            value={status}
+            options={options}
             onChange={onChange}
           />
-          <small className="form-text">{field.get("label")}</small>
+          <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
         </div>
-      ))}
-      <div className="form-group">
-        <TextArea
-          placeholder="A short bio of yourself"
-          name="bio"
-          value={bio}
-          onChange={onChange}
-        />
-        <small className="form-text">Tell us a little about yourself</small>
-      </div>
+        {profileFields(fields).map(field => (
+          <div key={field.get("key")} className="form-group">
+            <Input
+              type={field.get("type")}
+              placeholder={field.get("placeholder")}
+              name={field.get("name")}
+              value={field.get("value")}
+              onChange={onChange}
+            />
+            <small className="form-text">{field.get("label")}</small>
+          </div>
+        ))}
+        <div className="form-group">
+          <TextArea
+            placeholder="A short bio of yourself"
+            name="bio"
+            value={bio}
+            onChange={onChange}
+          />
+          <small className="form-text">Tell us a little about yourself</small>
+        </div>
 
-      <div className="my-2">
+        <div className="my-2">
+          <Button
+            type="button"
+            onClick={socialMediaToggle}
+            className="btn btn-light"
+          >
+            Add Social Network Links
+          </Button>
+          <span>Optional</span>
+        </div>
+
+        {isMediaOpen && (
+          <Fragment>
+            {mediaFields(links).map(media => (
+              <div key={media.get("key")} className="form-group social-input">
+                <i className={`fab ${media.get("icon")} fa-2x`}></i>
+                <Input
+                  value={media.get("value")}
+                  type={media.get("type")}
+                  placeholder={media.get("placeholder")}
+                  name={media.get("name")}
+                  onChange={onChange}
+                />
+              </div>
+            ))}
+          </Fragment>
+        )}
+      </Card>
+      <div className="button-container">
         <Button
-          type="button"
-          onClick={socialMediaToggle}
-          className="btn btn-light"
+          type="submit"
+          className="btn btn-primary my-1"
+          onClick={onSubmit}
         >
-          Add Social Network Links
+          Submit
         </Button>
-        <span>Optional</span>
+        <Button className="btn btn-light my-1" onClick={onGoBack}>
+          Go Back
+        </Button>
       </div>
-
-      {isMediaOpen && (
-        <Fragment>
-          {mediaFields(links).map(media => (
-            <div key={media.get("key")} className="form-group social-input">
-              <i className={`fab ${media.get("icon")} fa-2x`}></i>
-              <Input
-                value={media.get("value")}
-                type={media.get("type")}
-                placeholder={media.get("placeholder")}
-                name={media.get("name")}
-                onChange={onChange}
-              />
-            </div>
-          ))}
-        </Fragment>
-      )}
-      <Button type="submit" className="btn btn-primary my-1" onClick={onSubmit}>
-        Submit
-      </Button>
-      <Button className="btn btn-light my-1" onClick={onGoBack}>
-        Go Back
-      </Button>
     </form>
   );
 };

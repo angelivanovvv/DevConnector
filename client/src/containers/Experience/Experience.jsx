@@ -95,13 +95,19 @@ class Experience extends Component {
     const values = { title, company, location, from, current, to, description };
     return (
       <div className="page-wrapper">
-        <h1 className="large text-primary">Add Your Experience</h1>
+        <h1 className="large text-primary text-uppercase">
+          Add Your Experience
+        </h1>
         <p className="lead">
-          <i className="fas fa-code-branch"></i> Add any developer/programming
-          positions that you have had in the past
+          <i className="fas fa-code-branch icon-right"></i>
+          <span className="small">
+            Add any developer/programming positions that you have had in the
+            past
+          </span>
         </p>
         <SkillsForm
           fields={values}
+          formType="experience"
           onChange={this.onChange}
           onCheck={this.onCheck}
           onSubmit={this.onSubmit}

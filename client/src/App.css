@@ -5,6 +5,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --white-color: #ffffff;
 }
 
 * {
@@ -40,16 +41,12 @@ img {
   width: 100%;
 }
 
-.pointer {
-  cursor: pointer;
-}
-
 /* Utilities */
 .container {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0.5rem 2rem;
   margin-top: 6rem;
 }
 
@@ -60,6 +57,26 @@ img {
 .page-wrapper {
   margin: auto;
   padding: 0 2rem;
+}
+
+.card-wrapper {
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px 25px;
+}
+
+.icon-right {
+  margin-right: 0.5rem;
+}
+
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.button-container {
+  text-align: right;
 }
 
 /* Text Styles*/
@@ -75,6 +92,12 @@ img {
   margin-bottom: 1rem;
 }
 
+.small {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -84,12 +107,26 @@ img {
   text-align: center;
 }
 
+.text-uppercase {
+  text-transform: uppercase;
+}
+
 .text-primary {
   color: var(--primary-color);
 }
 
 .text-dark {
   color: var(--dark-color);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.empty-message {
+  font-size: 16px;
+  font-weight: 100;
+  margin: 0 !important;
 }
 
 /* Padding */
@@ -140,6 +177,12 @@ img {
 .my-2 {
   margin: 2rem 0;
 }
+.my-2-top {
+  margin-top: 2rem;
+}
+.my-2-bottom {
+  margin-bottom: 2rem;
+}
 .my-3 {
   margin: 3rem 0;
 }
@@ -152,9 +195,12 @@ img {
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.btn-dash {
+  margin-right: 0.5rem;
 }
 
 .badge {
@@ -306,10 +352,35 @@ button {
   color: #0077b5;
 }
 
-.table th,
-.table td {
+/* Dashborad buttons */
+/* .dash-buttons {
+  margin-bottom: 50px;
+} */
+
+/* Tatle */
+.table-container {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.table thead th,
+.table thead td {
   padding: 1rem;
   text-align: left;
+}
+
+.table tbody td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--light-color);
+}
+
+.table tbody td:last-child {
+  text-align: center;
 }
 
 .table th {
@@ -566,7 +637,6 @@ button {
   }
 
   /* Profile Page */
-
   .profile-top img,
   .profile img {
     width: 200px;

@@ -174,7 +174,7 @@ export const experienceFields = ({ title, company, location }) =>
       type: "text",
       value: location,
       placeholder: "* Location",
-      name: "company"
+      name: "location"
     }
   ]);
 
@@ -204,24 +204,55 @@ export const educationFields = ({ school, degree, fieldofstudy }) =>
   ]);
 
 /*-------------------------------- DASHBOARD TABLE CONFIGs --------------------------------*/
-export const tableHeader = fromJS([
+export const experienceRows = fromJS([
   {
-    key: 1,
+    id: 1,
+    key: "company",
     title: "Company",
     class: ""
   },
   {
-    key: 2,
+    id: 2,
+    key: "title",
     title: "Title",
     class: "hide-sm"
   },
   {
-    key: 3,
+    id: 3,
+    key: "years",
     title: "Years",
     class: "hide-sm"
   },
   {
-    key: 4,
+    id: 4,
+    key: "button",
+    title: "",
+    class: ""
+  }
+]);
+
+export const educationRows = fromJS([
+  {
+    id: 5,
+    key: "school",
+    title: "School",
+    class: ""
+  },
+  {
+    id: 6,
+    key: "degree",
+    title: "Degree",
+    class: "hide-sm"
+  },
+  {
+    id: 7,
+    key: "years",
+    title: "Years",
+    class: "hide-sm"
+  },
+  {
+    id: 8,
+    key: "button",
     title: "",
     class: ""
   }
