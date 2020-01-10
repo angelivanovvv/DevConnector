@@ -74,7 +74,6 @@ const ProfileForm = ({
           >
             Add Social Network Links
           </Button>
-          <span>Optional</span>
         </div>
 
         {isMediaOpen && (
@@ -97,7 +96,7 @@ const ProfileForm = ({
       <div className="button-container">
         <Button
           type="submit"
-          className="btn btn-primary my-1"
+          className="btn btn-primary btn-right my-1"
           onClick={onSubmit}
         >
           Submit

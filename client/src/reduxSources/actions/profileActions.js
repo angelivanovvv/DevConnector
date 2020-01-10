@@ -13,6 +13,10 @@ const profileSuccess = response => ({
   type: actionTypes.GET_PROFILE,
   payload: transformResponse(response)
 });
+const profilesSuccess = response => ({
+  type: actionTypes.GET_PROFILES,
+  payload: transformResponse(response)
+});
 const profileUpdateSuccess = response => ({
   type: actionTypes.UPDATE_PROFILE,
   payload: transformResponse(response)
@@ -21,9 +25,12 @@ const profileError = error => ({
   type: actionTypes.PROFILE_ERROR,
   error: transformError(error)
 });
-
 const profileDelete = () => ({
   type: actionTypes.DELETE_PROFILE
+});
+const githubSuccess = response => ({
+  type: actionTypes.GET_GITHUB_REPOS,
+  payload: transformResponse(response.data)
 });
 
 export const clearProfile = () => ({
@@ -36,6 +43,40 @@ export const getProfile = () => {
     try {
       const response = await Axios.get("/api/profile/me");
       dispatch(profileSuccess(response.data));
+    } catch (error) {
+      dispatch(profileError(error));
+    }
+  };
+};
+
+export const getProfiles = () => {
+  return async dispatch => {
+    dispatch(clearProfile());
+    try {
+      const response = await Axios.get("/api/profile");
+      dispatch(profilesSuccess(response.data));
+    } catch (error) {
+      dispatch(profileError(error));
+    }
+  };
+};
+
+export const getProfileById = userId => {
+  return async dispatch => {
+    try {
+      const response = await Axios.get(`/api/profile/${userId}`);
+      dispatch(profileSuccess(response.data));
+    } catch (error) {
+      dispatch(profileError(error));
+    }
+  };
+};
+
+export const getGithubRepos = username => {
+  return async dispatch => {
+    try {
+      const response = await Axios.get(`/api/profile/github/${username}`);
+      dispatch(githubSuccess(response.data));
     } catch (error) {
       dispatch(profileError(error));
     }

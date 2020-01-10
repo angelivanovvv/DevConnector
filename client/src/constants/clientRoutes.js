@@ -2,11 +2,9 @@ import { push } from "connected-react-router/immutable";
 
 export const PATHS = Object.freeze({
   LANDING: "/",
-
-  DEVELOPERS: "/developers",
+  PROFILES: "/profiles",
 
   REGISTER: "/register",
-
   LOGIN: "/login",
 
   DASHBOARD: "/dashboard",
@@ -20,11 +18,9 @@ export const PATHS = Object.freeze({
 
 export const ROUTES = Object.freeze({
   LANDING: () => `${PATHS.LANDING}`,
-
-  DEVELOPERS: () => `${PATHS.DEVELOPERS}`,
+  PROFILES: () => `${PATHS.PROFILES}`,
 
   REGISTER: () => `${PATHS.REGISTER}`,
-
   LOGIN: () => `${PATHS.LOGIN}`,
 
   DASHBOARD: () => `${PATHS.DASHBOARD}`,
@@ -38,5 +34,12 @@ export const ROUTES = Object.freeze({
 
 export const ROUTES_ACTIONS = Object.freeze({
   toDashboard: () => push(ROUTES.DASHBOARD()),
+
+  toCreateProfile: () => push(ROUTES.CREATE_PROFILE()),
+  toEditProfile: () => push(ROUTES.EDIT_PROFILE()),
+
+  toAddExperience: () => push(ROUTES.ADD_EXPERIENCE()),
+  toAddEducation: () => push(ROUTES.ADD_EDUCATION()),
+
   toLogout: () => push(ROUTES.LOGIN())
 });

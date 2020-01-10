@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Navbar from "./Navbar-component";
-import { findByTestAttr } from "../../../../utils/index";
+import Navbar from "./Navbar";
+import { findByTestAttr } from "../../utils/index";
 
 // Declare general function to provide component which is tested
 const setUpComponent = (props = {}) => {

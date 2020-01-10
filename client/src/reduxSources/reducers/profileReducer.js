@@ -9,6 +9,10 @@ const profileReducer = (state = profileState, { type, payload }) => {
       return state.set("loading", true);
     case actionTypes.GET_PROFILE:
       return state.set("profile", payload).set("loading", false);
+    case actionTypes.GET_PROFILES:
+      return state.set("profiles", payload).set("loading", false);
+    case actionTypes.GET_GITHUB_REPOS:
+      return state.set("repos", payload).set("loading", false);
     case actionTypes.UPDATE_PROFILE:
       return state.set("profile", payload).set("loading", false);
     case actionTypes.PROFILE_ERROR:

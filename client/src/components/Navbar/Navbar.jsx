@@ -1,20 +1,21 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import { ROUTES } from "./../../constants/clientRoutes";
-import { PropTypes } from "prop-types";
 
 const Navbar = ({ isAuthenticated, isLoading, logout }) => {
   const authLinks = (
     <ul>
       <li>
         <Link to={ROUTES.DASHBOARD()}>
-          <i className="fas fa-user" />{" "}
+          <i className="fas fa-user icon-right" />
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
       <li>
         <span className="pointer" onClick={logout}>
-          <i className="fas fa-sign-out-alt" />{" "}
+          <i className="fas fa-sign-out-alt icon-right" />
           <span className="hide-sm">Logout</span>
         </span>
       </li>
@@ -24,7 +25,7 @@ const Navbar = ({ isAuthenticated, isLoading, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to={ROUTES.DEVELOPERS()}>Developers</Link>
+        <Link to={ROUTES.PROFILES()}>Developers</Link>
       </li>
       <li>
         <Link to={ROUTES.REGISTER()}>Register</Link>

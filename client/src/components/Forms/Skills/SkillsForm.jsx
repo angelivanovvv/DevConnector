@@ -76,7 +76,7 @@ const SkillsForm = ({
       <div className="button-container">
         <Button
           type="submit"
-          className="btn btn-primary my-1"
+          className="btn btn-primary btn-right my-1"
           onClick={onSubmit}
         >
           Submit

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
 import { Map, List } from "immutable";
 import PropTypes from "prop-types";
 
@@ -17,8 +16,9 @@ import {
 } from "../../reduxSources/selectors/profileSelectors";
 
 import * as profileActions from "../../reduxSources/actions/profileActions";
+import * as routesActions from "../../reduxSources/actions/routesActions";
 
-import { ROUTES } from "../../constants/clientRoutes";
+import { ROUTES_ACTIONS } from "../../constants/clientRoutes";
 import { experienceRows, educationRows } from "../../constants/config";
 
 import Card from "../../components/Card";
@@ -37,12 +37,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  profileActions: bindActionCreators(profileActions, dispatch)
+  profileActions: bindActionCreators(profileActions, dispatch),
+  routesActions: bindActionCreators(routesActions, dispatch)
 });
 
 class Dashbooard extends Component {
   static propTypes = {
     profileActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    routesActions: PropTypes.objectOf(PropTypes.func).isRequired,
     user: PropTypes.instanceOf(Map),
     isAuthenticated: PropTypes.bool,
     isLoading: PropTypes.bool,
@@ -66,6 +68,13 @@ class Dashbooard extends Component {
     getProfile();
   }
 
+  createProfile = () => {
+    const {
+      routesActions: { changeLocation }
+    } = this.props;
+    changeLocation(ROUTES_ACTIONS.toCreateProfile());
+  };
+
   deleteExperience = id => {
     const {
       profileActions: { deleteExperience }
@@ -88,7 +97,14 @@ class Dashbooard extends Component {
   };
 
   render() {
-    const { user, profile, isLoading, experience, education } = this.props;
+    const {
+      user,
+      profile,
+      isLoading,
+      experience,
+      education,
+      routesActions
+    } = this.props;
     return (
       <div className="page-wrapper">
         {isLoading ? (
@@ -110,9 +126,7 @@ class Dashbooard extends Component {
                     profile="Edit Profile"
                     experience="Add Experience"
                     education="Add Education"
-                    profileLink={ROUTES.EDIT_PROFILE()}
-                    experienceLink={ROUTES.ADD_EXPERIENCE()}
-                    educationLink={ROUTES.ADD_EDUCATION()}
+                    router={routesActions}
                   />
                 </Card>
                 <Card className="my-2-bottom">
@@ -177,12 +191,14 @@ class Dashbooard extends Component {
                 <p className="small">
                   You haven't yet setup profile, lease add some info.
                 </p>
-                <Link
-                  className="btn btn-primary my-1"
-                  to={ROUTES.CREATE_PROFILE()}
-                >
-                  Create Profile
-                </Link>
+                <div className="button-container">
+                  <Button
+                    className="btn btn-primary my-1"
+                    onClick={this.createProfile}
+                  >
+                    Create Profile
+                  </Button>
+                </div>
               </Card>
             )}
           </Fragment>
