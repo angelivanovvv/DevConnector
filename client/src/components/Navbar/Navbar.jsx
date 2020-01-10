@@ -6,14 +6,17 @@ import { ROUTES } from "./../../constants/clientRoutes";
 
 const Navbar = ({ isAuthenticated, isLoading, logout }) => {
   const authLinks = (
-    <ul>
-      <li>
+    <ul className="ang-navbar">
+      <li className="nav-item">
+        <Link to={ROUTES.PROFILES()}>Developers</Link>
+      </li>
+      <li className="ang-nav-item">
         <Link to={ROUTES.DASHBOARD()}>
           <i className="fas fa-user icon-right" />
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
-      <li>
+      <li className="ang-nav-item">
         <span className="pointer" onClick={logout}>
           <i className="fas fa-sign-out-alt icon-right" />
           <span className="hide-sm">Logout</span>
@@ -23,14 +26,14 @@ const Navbar = ({ isAuthenticated, isLoading, logout }) => {
   );
 
   const guestLinks = (
-    <ul>
-      <li>
+    <ul className="ang-navbar">
+      <li className="nav-item">
         <Link to={ROUTES.PROFILES()}>Developers</Link>
       </li>
-      <li>
+      <li className="ang-nav-item">
         <Link to={ROUTES.REGISTER()}>Register</Link>
       </li>
-      <li>
+      <li className="ang-nav-item">
         <Link to={ROUTES.LOGIN()}>Login</Link>
       </li>
     </ul>

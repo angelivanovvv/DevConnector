@@ -21,7 +21,7 @@ const profileReducer = (state = profileState, { type, payload }) => {
       return state
         .set("profile", profileState.get("profile"))
         .set("repos", profileState.get("repos"))
-        .set("loading", false);
+        .set("loading", true);
     default:
       return state;
   }

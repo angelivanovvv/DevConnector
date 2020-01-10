@@ -36,7 +36,10 @@ class Landing extends Component {
               from other developers
             </p>
             <div className="buttons">
-              <Link className="btn btn-primary" to={ROUTES.REGISTER()}>
+              <Link
+                className="btn btn-primary btn-right"
+                to={ROUTES.REGISTER()}
+              >
                 Sign Up
               </Link>
               <Link className="btn btn-light" to={ROUTES.LOGIN()}>
