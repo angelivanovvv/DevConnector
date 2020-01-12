@@ -6,6 +6,10 @@ export const getProfile = createSelector(profile, profile =>
   profile.get("profile")
 );
 
+export const getProfiles = createSelector(profile, profile =>
+  profile.get("profiles")
+);
+
 export const getExperience = createSelector(profile, profile =>
   profile.getIn(["profile", "experience"])
 );

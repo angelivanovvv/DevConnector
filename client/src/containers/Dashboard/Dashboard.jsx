@@ -116,7 +116,7 @@ class Dashbooard extends Component {
             {profile !== null ? (
               <Fragment>
                 <Card className="my-2-bottom">
-                  <p className="lead">
+                  <p className="lead text-center">
                     <i className="fas fa-user icon-right"></i>
                     <span className="small">
                       Welcome {user && user !== null ? user.get("name") : null}!
@@ -182,14 +182,14 @@ class Dashbooard extends Component {
               </Fragment>
             ) : (
               <Card>
-                <p className="lead">
+                <p className="lead text-center">
                   <i className="fas fa-user icon-right"></i>
                   <span className="small">
                     Welcome {user && user !== null ? user.get("name") : null}!
                   </span>
                 </p>
-                <p className="small">
-                  You haven't yet setup profile, lease add some info.
+                <p className="small text-center">
+                  You haven't yet setup profile, click to "Create Profile".
                 </p>
                 <div className="button-container">
                   <Button

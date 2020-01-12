@@ -60,10 +60,16 @@ img {
 }
 
 .card-wrapper {
+  /* -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
+  padding: 30px 25px;
+}
+
+.box-shadow {
   -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  padding: 30px 25px;
 }
 
 .icon-right {
@@ -101,6 +107,14 @@ img {
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-link {
+  font-size: 1rem;
 }
 
 .text-center {
@@ -173,6 +187,9 @@ img {
 }
 .my-1 {
   margin: 1rem 0;
+}
+.my-1-top {
+  margin-top: 1rem;
 }
 .my-2 {
   margin: 2rem 0;
@@ -273,7 +290,7 @@ img {
   opacity: 0.8;
 }
 
-.bg-light,
+/* .bg-light, */
 .badge-light {
   border: #ccc solid 1px;
 }
@@ -453,7 +470,7 @@ button {
   grid-gap: 2rem;
   padding: 1rem;
   line-height: 1.8;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* Profile Page */

@@ -9,7 +9,7 @@ const Actions = ({ profile, experience, education, router }) => {
   const { changeLocation } = router;
   const { toEditProfile, toAddExperience, toAddEducation } = ROUTES_ACTIONS;
   return (
-    <div className="dash-buttons">
+    <div className="dash-buttons text-center">
       <Button
         onClick={() => changeLocation(toEditProfile())}
         className="btn btn-right btn-light"

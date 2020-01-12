@@ -1,47 +1,56 @@
 import React from "react";
+import { Map } from "immutable";
 import PropTypes from "prop-types";
 
-// convert component to proper state
-const ProfileCard = () => {
-  return (
-    <div class="profile bg-light">
-      <img
-        class="round-img"
-        src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-        alt=""
-      />
-      <div>
-        <h2>John Doe</h2>
-        <p>Developer at Microsoft</p>
-        <p>Seattle, WA</p>
-        <a href="profile.html" class="btn btn-primary">
-          View Profile
-        </a>
-      </div>
+import Button from "../Button";
 
-      <ul>
-        <li class="text-primary">
-          <i class="fas fa-check"></i> HTML
-        </li>
-        <li class="text-primary">
-          <i class="fas fa-check"></i> CSS
-        </li>
-        <li class="text-primary">
-          <i class="fas fa-check"></i> JavaScript
-        </li>
-        <li class="text-primary">
-          <i class="fas fa-check"></i> Python
-        </li>
-        <li class="text-primary">
-          <i class="fas fa-check"></i> C#
-        </li>
-      </ul>
+const ProfileCard = ({ details, onClick }) => {
+  return (
+    <div className="profile bg-light box-shadow">
+      <div className="image-wrapper">
+        <img className="round-img" src={details.getIn(["user", "avatar"])} />
+      </div>
+      <div className="user-wrapper">
+        <h2>{details.getIn(["user", "name"])}</h2>
+        <p>
+          {details.get("status")} at {details.get("company")}
+        </p>
+        <p>{details.get("location")}</p>
+        <Button
+          className="btn btn-primary my-1-top"
+          onClick={() => onClick(details.getIn(["user", "_id"]))}
+        >
+          View Profile
+        </Button>
+      </div>
+      <div className="skills-wrapper">
+        <ul>
+          {details.get("skills").size > 0 ? (
+            details
+              .get("skills")
+              .slice(0, 4)
+              .map((skill, index) => (
+                <li key={index} className="text-primary">
+                  <i className="fas fa-check"></i> {skill}
+                </li>
+              ))
+          ) : (
+            <p>no skills</p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
 
-ProfileCard.propTypes = {};
+ProfileCard.propTypes = {
+  details: PropTypes.instanceOf(Map),
+  onClick: PropTypes.func
+};
 
-ProfileCard.defaultProps = {};
+ProfileCard.defaultProps = {
+  details: Map(),
+  onClick: () => {}
+};
 
 export default ProfileCard;

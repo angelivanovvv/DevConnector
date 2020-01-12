@@ -75,6 +75,14 @@ class Login extends Component {
                 onChange={this.onChange}
               />
             </div>
+            <div className="link-container">
+              <p className="my-1 text-center text-link">
+                Don't have an account?{" "}
+                <Link className="text-underline" to={ROUTES.REGISTER()}>
+                  Sign Up
+                </Link>
+              </p>
+            </div>
             <div className="button-container">
               <Button
                 type="submit"
@@ -86,9 +94,6 @@ class Login extends Component {
             </div>
           </form>
         </Card>
-        <p className="my-1 text-center">
-          Don't have an account? <Link to={ROUTES.REGISTER()}>Sign Up</Link>
-        </p>
       </div>
     );
   }

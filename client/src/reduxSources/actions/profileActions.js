@@ -106,7 +106,7 @@ export const createProfile = (formData, edit = false) => {
 export const deleteProfile = () => {
   return async dispatch => {
     try {
-      const response = await Axios.delete("/api/profile");
+      await Axios.delete("/api/profile");
       dispatch(clearProfile());
       dispatch(profileDelete());
       dispatch(

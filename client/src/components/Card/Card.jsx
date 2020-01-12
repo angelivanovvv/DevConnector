@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = ({ children, className }) => (
-  <div className={`card-wrapper ${className}`}>{children}</div>
+  <div className={`card-wrapper box-shadow ${className}`}>{children}</div>
 );
 
 Card.propTypes = {
