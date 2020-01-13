@@ -60,9 +60,6 @@ img {
 }
 
 .card-wrapper {
-  /* -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
   padding: 30px 25px;
 }
 
@@ -95,7 +92,6 @@ img {
 .large {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 1rem;
 }
 
 .small {
@@ -137,10 +133,25 @@ img {
   cursor: pointer;
 }
 
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .empty-message {
   font-size: 16px;
   font-weight: 100;
   margin: 0 !important;
+}
+
+.opacity-8 {
+  opacity: 0.8;
+}
+
+.opacity-6 {
+  opacity: 0.8;
 }
 
 /* Padding */
@@ -190,6 +201,9 @@ img {
 }
 .my-1-top {
   margin-top: 1rem;
+}
+.my-1-bottom {
+  margin-bottom: 1rem;
 }
 .my-2 {
   margin: 2rem 0;
@@ -368,11 +382,6 @@ button {
 .form .social-input i.fa-linkedin {
   color: #0077b5;
 }
-
-/* Dashborad buttons */
-/* .dash-buttons {
-  margin-bottom: 50px;
-} */
 
 /* Tatle */
 .table-container {

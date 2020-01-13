@@ -111,12 +111,13 @@ class Dashbooard extends Component {
           <Spinner />
         ) : (
           <Fragment>
-            <h1 className="large text-primary text-uppercase">Dashboard</h1>
-
+            <h1 className="large text-primary text-uppercase my-1-bottom">
+              Dashboard
+            </h1>
             {profile !== null ? (
               <Fragment>
                 <Card className="my-2-bottom">
-                  <p className="lead text-center">
+                  <p className="lead">
                     <i className="fas fa-user icon-right"></i>
                     <span className="small">
                       Welcome {user && user !== null ? user.get("name") : null}!
@@ -130,7 +131,7 @@ class Dashbooard extends Component {
                   />
                 </Card>
                 <Card className="my-2-bottom">
-                  <h2 className="my-2-bottom text-center text-uppercase">
+                  <h2 className="my-2-bottom text-uppercase">
                     Your experience
                   </h2>
                   {experience.size === 0 ? (
@@ -146,9 +147,7 @@ class Dashbooard extends Component {
                   )}
                 </Card>
                 <Card className="my-2-bottom">
-                  <h2 className="my-2-bottom text-center text-uppercase">
-                    Your education
-                  </h2>
+                  <h2 className="my-2-bottom text-uppercase">Your education</h2>
                   {education.size === 0 ? (
                     <h2 className="my-2 empty-message text-center">
                       You don't have any education added to your profile.
@@ -162,9 +161,7 @@ class Dashbooard extends Component {
                   )}
                 </Card>
                 <Card className="my-2-bottom">
-                  <h2 className="my-2-bottom text-center text-uppercase">
-                    Your Account
-                  </h2>
+                  <h2 className="my-2-bottom text-uppercase">Your Account</h2>
                   <h2 className="my-2 empty-message text-center">
                     You don't want to have your account anymore? You can delete
                     account here.

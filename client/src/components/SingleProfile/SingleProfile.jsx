@@ -4,11 +4,15 @@ import PropTypes from "prop-types";
 
 import Button from "../Button";
 
-const ProfileCard = ({ details, onClick }) => {
+const SingleProfile = ({ details, onClick }) => {
   return (
     <div className="profile bg-light box-shadow">
       <div className="image-wrapper">
-        <img className="round-img" src={details.getIn(["user", "avatar"])} />
+        <img
+          className="round-img"
+          src={details.getIn(["user", "avatar"])}
+          alt=""
+        />
       </div>
       <div className="user-wrapper">
         <h2>{details.getIn(["user", "name"])}</h2>
@@ -35,7 +39,7 @@ const ProfileCard = ({ details, onClick }) => {
                 </li>
               ))
           ) : (
-            <p>no skills</p>
+            <p className="small">no skills</p>
           )}
         </ul>
       </div>
@@ -43,14 +47,14 @@ const ProfileCard = ({ details, onClick }) => {
   );
 };
 
-ProfileCard.propTypes = {
+SingleProfile.propTypes = {
   details: PropTypes.instanceOf(Map),
   onClick: PropTypes.func
 };
 
-ProfileCard.defaultProps = {
+SingleProfile.defaultProps = {
   details: Map(),
   onClick: () => {}
 };
 
-export default ProfileCard;
+export default SingleProfile;

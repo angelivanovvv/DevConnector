@@ -64,7 +64,7 @@ export const getProfiles = () => {
 export const getProfileById = userId => {
   return async dispatch => {
     try {
-      const response = await Axios.get(`/api/profile/${userId}`);
+      const response = await Axios.get(`/api/profile/user/${userId}`);
       dispatch(profileSuccess(response.data));
     } catch (error) {
       dispatch(profileError(error));

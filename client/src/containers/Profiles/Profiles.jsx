@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
@@ -13,7 +13,7 @@ import * as routesActions from "../../reduxSources/actions/routesActions";
 import { ROUTES_ACTIONS } from "./../../constants/clientRoutes";
 
 import Spinner from "../../components/Spinner";
-import ProfileCard from "../../components/ProfileCard";
+import SingleProfile from "../../components/SingleProfile";
 
 const mapStateToProps = state => ({
   profiles: getProfiles(state),
@@ -51,30 +51,28 @@ class Profiles extends Component {
     const { profiles, isLoading } = this.props;
     return (
       <div className="page-wrapper">
-        <h1 className="large text-primary text-uppercase">Developers</h1>
-        <p className="lead">
-          <i className="fab fa-connectdevelop icon-right"></i>
-          <span className="small">Browse and connect with developers</span>
-        </p>
-        <div className="profiles">
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <Fragment>
-              {profiles.size > 0 ? (
-                profiles.map(profile => (
-                  <ProfileCard
-                    key={profile.get("_id")}
-                    details={profile}
-                    onClick={this.viewProfile}
-                  />
-                ))
-              ) : (
-                <p className="text-center small">No profiles found.</p>
-              )}
-            </Fragment>
-          )}
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="profiles">
+            <h1 className="large text-primary text-uppercase">Developers</h1>
+            <p className="lead">
+              <i className="fab fa-connectdevelop icon-right"></i>
+              <span className="small">Browse and connect with developers</span>
+            </p>
+            {profiles.size > 0 ? (
+              profiles.map(profile => (
+                <SingleProfile
+                  key={profile.get("_id")}
+                  details={profile}
+                  onClick={this.viewProfile}
+                />
+              ))
+            ) : (
+              <p className="text-center small">No profiles found.</p>
+            )}
+          </div>
+        )}
       </div>
     );
   }

@@ -102,6 +102,34 @@ export const mediaFields = ({
     }
   ]);
 
+export const mediaLinks = fromJS([
+  {
+    key: 1,
+    name: "twitter",
+    icon: "fa-twitter"
+  },
+  {
+    key: 2,
+    name: "facebook",
+    icon: "fa-facebook"
+  },
+  {
+    key: 3,
+    name: "youtube",
+    icon: "fa-youtube"
+  },
+  {
+    key: 4,
+    name: "linkedin",
+    icon: "fa-linkedin"
+  },
+  {
+    key: 5,
+    name: "instagram",
+    icon: "fa-instagram"
+  }
+]);
+
 /*-------------------------------- SELECT FIELD CONFIGs --------------------------------*/
 
 export const options = fromJS([

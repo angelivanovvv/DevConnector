@@ -14,6 +14,11 @@ const Body = ({ isAuthenticated, isLoading }) => {
       <Route exact path={PATHS.REGISTER} component={Pages.Register} />
       <Route exact path={PATHS.LOGIN} component={Pages.Login} />
       <Route exact path={PATHS.PROFILES} component={Pages.Profiles} />
+      <Route
+        exact
+        path={PATHS.PROFILE + "/:userId"}
+        component={Pages.Profile}
+      />
       <PrivateRoute
         exact
         auth={auth}
