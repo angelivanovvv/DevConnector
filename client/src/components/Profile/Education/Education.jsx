@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 
 import Card from "../../Card";
 
-const Experience = ({ experience, position }) => (
-  <Card className="profile-exp bg-white p-2">
-    <h2 className="text-primary">Experience</h2>
-    {experience.size > 0 ? (
-      experience.map(item => (
+const Education = ({ education }) => (
+  <Card className="profile-edu bg-white p-2">
+    <h2 className="text-primary">Education</h2>
+    {education.size > 0 ? (
+      education.map(item => (
         <div key={item.get("_id")}>
-          <h3 className="text-dark">{item.get("company")}</h3>
+          <h3>{item.get("school")}</h3>
           <p>
             <Moment format="YYYY/MM/DD">{item.get("from")}</Moment> -{" "}
             {item.get("current") ? (
@@ -21,8 +21,12 @@ const Experience = ({ experience, position }) => (
             )}
           </p>
           <p>
-            <strong>Position: </strong>
-            {position}
+            <strong>Degree: </strong>
+            {item.get("degree")}
+          </p>
+          <p>
+            <strong>Field Of Study: </strong>
+            {item.get("fieldofstudy")}
           </p>
           <p>
             <strong>Description: </strong>
@@ -36,13 +40,11 @@ const Experience = ({ experience, position }) => (
   </Card>
 );
 
-Experience.propTypes = {
-  experience: PropTypes.instanceOf(List),
-  position: PropTypes.string
+Education.propTypes = {
+  education: PropTypes.instanceOf(List)
 };
-Experience.defaultProps = {
-  experience: List(),
-  position: ""
+Education.defaultProps = {
+  education: List()
 };
 
-export default Experience;
+export default Education;

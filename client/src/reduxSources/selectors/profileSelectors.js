@@ -18,6 +18,10 @@ export const getEducation = createSelector(profile, profile =>
   profile.getIn(["profile", "education"])
 );
 
+export const getRepos = createSelector(profile, profile =>
+  profile.get("repos")
+);
+
 export const getIsLoading = createSelector(profile, profile =>
   profile.get("loading")
 );

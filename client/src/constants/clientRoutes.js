@@ -42,6 +42,7 @@ export const ROUTES_ACTIONS = Object.freeze({
 
   toDashboard: () => push(ROUTES.DASHBOARD()),
 
+  toProfiles: () => push(ROUTES.PROFILES()),
   toProfile: id => push(ROUTES.PROFILE(id)),
 
   toCreateProfile: () => push(ROUTES.CREATE_PROFILE()),

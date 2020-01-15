@@ -44,6 +44,7 @@ export const getProfile = () => {
       const response = await Axios.get("/api/profile/me");
       dispatch(profileSuccess(response.data));
     } catch (error) {
+      dispatch(clearProfile());
       dispatch(profileError(error));
     }
   };
@@ -76,7 +77,7 @@ export const getGithubRepos = username => {
   return async dispatch => {
     try {
       const response = await Axios.get(`/api/profile/github/${username}`);
-      dispatch(githubSuccess(response.data));
+      dispatch(githubSuccess(response));
     } catch (error) {
       dispatch(profileError(error));
     }

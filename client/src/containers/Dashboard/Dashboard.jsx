@@ -135,7 +135,7 @@ class Dashbooard extends Component {
                     Your experience
                   </h2>
                   {experience.size === 0 ? (
-                    <h2 className="my-2 empty-message text-center">
+                    <h2 className="my-2 empty-message">
                       You don't have any experience added to your profile.
                     </h2>
                   ) : (
@@ -149,7 +149,7 @@ class Dashbooard extends Component {
                 <Card className="my-2-bottom">
                   <h2 className="my-2-bottom text-uppercase">Your education</h2>
                   {education.size === 0 ? (
-                    <h2 className="my-2 empty-message text-center">
+                    <h2 className="my-2 empty-message">
                       You don't have any education added to your profile.
                     </h2>
                   ) : (
@@ -162,7 +162,7 @@ class Dashbooard extends Component {
                 </Card>
                 <Card className="my-2-bottom">
                   <h2 className="my-2-bottom text-uppercase">Your Account</h2>
-                  <h2 className="my-2 empty-message text-center">
+                  <h2 className="my-2 empty-message">
                     You don't want to have your account anymore? You can delete
                     account here.
                   </h2>
