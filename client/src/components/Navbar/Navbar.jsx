@@ -10,6 +10,9 @@ const Navbar = ({ isAuthenticated, isLoading, logout }) => {
       <li className="nav-item">
         <Link to={ROUTES.PROFILES()}>Developers</Link>
       </li>
+      <li className="nav-item">
+        <Link to={ROUTES.POSTS()}>Posts</Link>
+      </li>
       <li className="ang-nav-item">
         <Link to={ROUTES.DASHBOARD()}>
           <i className="fas fa-user icon-right" />

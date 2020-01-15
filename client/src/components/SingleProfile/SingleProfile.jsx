@@ -3,7 +3,6 @@ import { Map } from "immutable";
 import PropTypes from "prop-types";
 
 import Button from "../Button";
-import Card from "../Card";
 
 const SingleProfile = ({ details, onClick }) => (
   <div className="profile bg-light box-shadow">

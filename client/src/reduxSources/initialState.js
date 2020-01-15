@@ -17,6 +17,12 @@ const initialState = fromJS({
     repos: [],
     loading: true,
     errors: {}
+  },
+  post: {
+    post: null,
+    posts: [],
+    loading: true,
+    errors: {}
   }
 });
 

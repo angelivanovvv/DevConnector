@@ -17,7 +17,11 @@ Button.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.any
+  ]),
   onClick: PropTypes.func,
   disabled: PropTypes.bool
 };

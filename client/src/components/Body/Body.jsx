@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { PATHS } from "../../constants/clientRoutes";
 import * as Pages from "../../exports/Pages";
+
 import PrivateRoute from "./../PrivateRoute/PrivateRoute";
 
 const Body = ({ isAuthenticated, isLoading }) => {
@@ -48,6 +49,12 @@ const Body = ({ isAuthenticated, isLoading }) => {
         auth={auth}
         path={PATHS.ADD_EDUCATION}
         component={Pages.Education}
+      />
+      <PrivateRoute
+        exact
+        auth={auth}
+        path={PATHS.POSTS}
+        component={Pages.Posts}
       />
     </Switch>
   );

@@ -15,7 +15,9 @@ export const PATHS = Object.freeze({
   EDIT_PROFILE: "/edit-profile",
 
   ADD_EXPERIENCE: "/add-experience",
-  ADD_EDUCATION: "/add-education"
+  ADD_EDUCATION: "/add-education",
+
+  POSTS: "/posts"
 });
 
 export const ROUTES = Object.freeze({
@@ -33,7 +35,9 @@ export const ROUTES = Object.freeze({
   EDIT_PROFILE: () => `${PATHS.EDIT_PROFILE}`,
 
   ADD_EXPERIENCE: () => `${PATHS.ADD_EXPERIENCE}`,
-  ADD_EDUCATION: () => `${PATHS.ADD_EDUCATION}`
+  ADD_EDUCATION: () => `${PATHS.ADD_EDUCATION}`,
+
+  POSTS: () => `${PATHS.POSTS}`
 });
 
 export const ROUTES_ACTIONS = Object.freeze({
@@ -51,5 +55,7 @@ export const ROUTES_ACTIONS = Object.freeze({
   toAddExperience: () => push(ROUTES.ADD_EXPERIENCE()),
   toAddEducation: () => push(ROUTES.ADD_EDUCATION()),
 
-  toLogout: () => push(ROUTES.LOGIN())
+  toLogout: () => push(ROUTES.LOGIN()),
+
+  toPosts: () => push(ROUTES.POSTS())
 });
