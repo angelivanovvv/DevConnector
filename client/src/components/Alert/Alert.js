@@ -1,25 +1,24 @@
 import React from "react";
 
-import { List } from 'immutable';
 import PropTypes from "prop-types";
-  
+
 const Alert = ({ errors }) => {
   return (
     errors !== null &&
     errors.size > 0 &&
     errors.map(alert => (
-      <div key={alert.get('id')} className={`alert alert-${alert.get('alertType')}`}>
-        {alert.get('msg')}
+      <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+        {alert.msg}
       </div>
     ))
-  )
-}
+  );
+};
 
 Alert.propTypes = {
-  alerts: PropTypes.instanceOf(List),
+  alerts: PropTypes.instanceOf(Object)
 };
 Alert.defaultProps = {
-  alerts: List(),
+  alerts: Object()
 };
 
 export default Alert;

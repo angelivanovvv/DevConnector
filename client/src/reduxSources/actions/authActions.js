@@ -21,7 +21,7 @@ export const unAutorized = () => ({
 export const loadUser = () => {
   const userLoaded = response => ({
     type: actionTypes.USER_LOADED,
-    payload: transformResponse(response.data)
+    payload: transformResponse(response)
   });
   const authError = error => ({
     type: actionTypes.AUTH_ERROR,
@@ -39,9 +39,9 @@ export const loadUser = () => {
 };
 
 export const register = ({ name, email, password }) => {
-  const registerSuccess = data => ({
+  const registerSuccess = response => ({
     type: actionTypes.REGISTER_SUCCESS,
-    payload: transformResponse(data)
+    payload: transformResponse(response)
   });
   const registerFail = () => ({
     type: actionTypes.REGISTER_FAIL
@@ -50,7 +50,7 @@ export const register = ({ name, email, password }) => {
     const body = JSON.stringify({ name, email, password });
     try {
       const response = await Axios.post("/api/users", body);
-      dispatch(registerSuccess(response.data));
+      dispatch(registerSuccess(response));
       dispatch(loadUser());
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (err) {
@@ -65,9 +65,9 @@ export const register = ({ name, email, password }) => {
 };
 
 export const login = (email, password) => {
-  const loginSuccess = data => ({
+  const loginSuccess = response => ({
     type: actionTypes.LOGIN_SUCCESS,
-    payload: transformResponse(data)
+    payload: transformResponse(response)
   });
   const loginFail = () => ({
     type: actionTypes.LOGIN_FAIL
@@ -76,7 +76,7 @@ export const login = (email, password) => {
     const body = JSON.stringify({ email, password });
     try {
       const response = await Axios.post("/api/auth", body);
-      dispatch(loginSuccess(response.data));
+      dispatch(loginSuccess(response));
       dispatch(loadUser());
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (err) {

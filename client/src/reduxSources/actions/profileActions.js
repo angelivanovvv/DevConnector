@@ -30,7 +30,7 @@ const profileDelete = () => ({
 });
 const githubSuccess = response => ({
   type: actionTypes.GET_GITHUB_REPOS,
-  payload: transformResponse(response.data)
+  payload: transformResponse(response)
 });
 
 export const clearProfile = () => ({
@@ -42,7 +42,7 @@ export const getProfile = () => {
     dispatch(profile());
     try {
       const response = await Axios.get("/api/profile/me");
-      dispatch(profileSuccess(response.data));
+      dispatch(profileSuccess(response));
     } catch (error) {
       dispatch(clearProfile());
       dispatch(profileError(error));
@@ -55,7 +55,7 @@ export const getProfiles = () => {
     dispatch(clearProfile());
     try {
       const response = await Axios.get("/api/profile");
-      dispatch(profilesSuccess(response.data));
+      dispatch(profilesSuccess(response));
     } catch (error) {
       dispatch(profileError(error));
     }
@@ -66,7 +66,7 @@ export const getProfileById = userId => {
   return async dispatch => {
     try {
       const response = await Axios.get(`/api/profile/user/${userId}`);
-      dispatch(profileSuccess(response.data));
+      dispatch(profileSuccess(response));
     } catch (error) {
       dispatch(profileError(error));
     }
@@ -90,7 +90,7 @@ export const createProfile = (formData, edit = false) => {
     let alertMessage = edit ? "Profile Updated" : "Profile Created";
     try {
       const response = await Axios.post("/api/profile", formData);
-      dispatch(profileSuccess(response.data));
+      dispatch(profileSuccess(response));
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
@@ -124,7 +124,7 @@ export const addExperience = formData => {
     const alertMessage = "Experience Added";
     try {
       const response = await Axios.put("/api/profile/experience", formData);
-      dispatch(profileUpdateSuccess(response.data));
+      dispatch(profileUpdateSuccess(response));
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
@@ -143,7 +143,7 @@ export const deleteExperience = id => {
     const alertmessage = "Experience Deleted";
     try {
       const response = await Axios.delete(`/api/profile/experience/${id}`);
-      dispatch(profileUpdateSuccess(response.data));
+      dispatch(profileUpdateSuccess(response));
       dispatch(alertActions.alert(alertmessage, "success"));
     } catch (error) {
       dispatch(profileError(error));
@@ -156,7 +156,7 @@ export const addEducation = formData => {
     const alertMessage = "Education Added";
     try {
       const response = await Axios.put("/api/profile/education", formData);
-      dispatch(profileUpdateSuccess(response.data));
+      dispatch(profileUpdateSuccess(response));
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
@@ -175,7 +175,7 @@ export const deleteEducation = id => {
     const alertmessage = "Education Deleted";
     try {
       const response = await Axios.delete(`/api/profile/education/${id}`);
-      dispatch(profileUpdateSuccess(response.data));
+      dispatch(profileUpdateSuccess(response));
       dispatch(alertActions.alert(alertmessage, "success"));
     } catch (error) {
       dispatch(profileError(error));

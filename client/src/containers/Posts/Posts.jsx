@@ -62,6 +62,39 @@ class Posts extends Component {
     });
   };
 
+  likePost = id => {
+    const {
+      postActions: { addLike }
+    } = this.props;
+    addLike(id);
+  };
+
+  unlikePost = id => {
+    const {
+      postActions: { removeLike }
+    } = this.props;
+    removeLike(id);
+  };
+
+  createPost = (event, formData) => {
+    event.preventDefault();
+    const {
+      postActions: { createPost }
+    } = this.props;
+    this.setState({
+      ...this.state,
+      post: ""
+    });
+    createPost(formData);
+  };
+
+  deletePost = id => {
+    const {
+      postActions: { deletePost }
+    } = this.props;
+    deletePost(id);
+  };
+
   render() {
     const { user, posts, isLoading } = this.props;
     const { post } = this.state;
@@ -87,14 +120,14 @@ class Posts extends Component {
                 <Button
                   type="button"
                   className="btn btn-primary my-1"
-                  onClick={() => console.log("submited")}
+                  onClick={event => this.createPost(event, post)}
                 >
                   Submit
                 </Button>
               </form>
             </Card>
             {posts.isEmpty() ? (
-              <p className="small">No posts.</p>
+              <p className="small text-center my-2-top">No posts.</p>
             ) : (
               posts.map((post, index) => (
                 <SinglePost
@@ -102,6 +135,9 @@ class Posts extends Component {
                   post={post}
                   user={user}
                   isLoading={isLoading}
+                  onLike={this.likePost}
+                  onUnLike={this.unlikePost}
+                  onDelete={this.deletePost}
                 />
               ))
             )}

@@ -9,8 +9,7 @@ import { ROUTES } from "../../constants/clientRoutes";
 import Button from "../Button";
 import Card from "../Card";
 
-const SinglePost = ({ post, user, isLoading }) => {
-  console.log(post.toJS());
+const SinglePost = ({ post, user, isLoading, onLike, onUnLike, onDelete }) => {
   return (
     <Card className="post bg-white p-1 my-1">
       <div className="post-details">
@@ -29,17 +28,17 @@ const SinglePost = ({ post, user, isLoading }) => {
             <Button
               type="button"
               className="btn btn-light btn-right"
-              onClick={() => console.log("like")}
+              onClick={() => onLike(post.get("_id"))}
             >
               <i className="fas fa-thumbs-up"></i>
-              <span>
+              <span className="text-left">
                 {!post.get("likes").isEmpty() && post.get("likes").size}
               </span>
             </Button>
             <Button
               type="button"
               className="btn btn-light"
-              onClick={() => console.log("unlike")}
+              onClick={() => onUnLike(post.get("_id"))}
             >
               <i className="fas fa-thumbs-down"></i>
             </Button>
@@ -61,7 +60,7 @@ const SinglePost = ({ post, user, isLoading }) => {
               <Button
                 type="button"
                 className="btn btn-danger"
-                onClick={() => console.log("deleted")}
+                onClick={() => onDelete(post.get("_id"))}
               >
                 <i className="fas fa-times"></i>
               </Button>
@@ -74,9 +73,18 @@ const SinglePost = ({ post, user, isLoading }) => {
 };
 
 SinglePost.propTypes = {
-  post: PropTypes.instanceOf(Map).isRequired
+  post: PropTypes.instanceOf(Map).isRequired,
+  user: PropTypes.instanceOf(Map),
+  isLoading: PropTypes.bool,
+  onLike: PropTypes.func,
+  onUnLike: PropTypes.func
 };
 
-SinglePost.defaultProps = {};
+SinglePost.defaultProps = {
+  user: Map(),
+  isLoading: true,
+  onLike: () => {},
+  onUnLike: () => {}
+};
 
 export default SinglePost;

@@ -117,6 +117,10 @@ img {
   text-align: center;
 }
 
+.text-left {
+  padding-left: 5px;
+}
+
 .text-uppercase {
   text-transform: uppercase;
 }
