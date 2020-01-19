@@ -26,10 +26,17 @@ export const DELETE_PROFILE = "DELETE_PROFILE";
 
 export const GET_GITHUB_REPOS = "GET_GITHUB_REPOS";
 
+export const POSTS = "POSTS";
+export const POST = "POST";
+
 export const GET_POSTS = "GET_POSTS";
+export const GET_POST = "GET_POST";
 export const POST_ERROR = "POST_ERROR";
 
 export const CREATE_POST = "CREATE_POST";
 export const DELETE_POST = "DELETE_POST";
+
+export const CREATE_COMMENT = "CREATE_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 export const UPDATE_LIKE = "UPDATE_LIKE";

@@ -56,6 +56,12 @@ const Body = ({ isAuthenticated, isLoading }) => {
         path={PATHS.POSTS}
         component={Pages.Posts}
       />
+      <PrivateRoute
+        exact
+        auth={auth}
+        path={PATHS.DISCUSSION + "/:postId"}
+        component={Pages.Discussion}
+      />
     </Switch>
   );
 };

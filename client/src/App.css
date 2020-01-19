@@ -82,6 +82,27 @@ img {
   text-align: right;
 }
 
+.bnt-to-left {
+  float: left;
+}
+
+.btn-to-right {
+  float: right;
+}
+
+.btn-none {
+  float: none;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  zoom: 1;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
@@ -118,7 +139,7 @@ img {
 }
 
 .text-left {
-  padding-left: 5px;
+  margin-left: 5px;
 }
 
 .text-uppercase {
@@ -692,6 +713,7 @@ button {
 
   .profile-grid {
     grid-template-areas:
+      "buttons-top"
       "top"
       "about"
       "exp"

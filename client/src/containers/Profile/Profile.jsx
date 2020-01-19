@@ -93,7 +93,7 @@ class Profile extends Component {
           <div className="profile-grid">
             <div className="buttons-top">
               <Button
-                className="btn btn-primary btn-right"
+                className="btn btn-light btn-right"
                 onClick={() => changeLocation(ROUTES_ACTIONS.toProfiles())}
               >
                 Back to profiles
@@ -104,7 +104,7 @@ class Profile extends Component {
               Profile !== null &&
               user.get("_id") === profile.getIn(["user", "_id"]) ? (
                 <Button
-                  className="btn btn-light btn-right"
+                  className="btn btn-primary btn-right"
                   onClick={() => changeLocation(ROUTES_ACTIONS.toEditProfile())}
                 >
                   Edit profile

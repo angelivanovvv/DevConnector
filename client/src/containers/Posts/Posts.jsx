@@ -9,7 +9,11 @@ import {
   getIsLoading
 } from "../../reduxSources/selectors/postSelectors";
 import { getUser } from "../../reduxSources/selectors/authSelectors";
+
+import * as routeActions from "../../reduxSources/actions/routesActions";
 import * as postActions from "../../reduxSources/actions/postActions";
+
+import { ROUTES_ACTIONS } from "./../../constants/clientRoutes";
 
 import Spinner from "../../components/Spinner";
 import Card from "../../components/Card";
@@ -24,12 +28,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postActions: bindActionCreators(postActions, dispatch)
+  postActions: bindActionCreators(postActions, dispatch),
+  routeActions: bindActionCreators(routeActions, dispatch)
 });
 
 class Posts extends Component {
   static propTypes = {
     postActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    routeActions: PropTypes.objectOf(PropTypes.func).isRequired,
     user: PropTypes.instanceOf(Map),
     posts: PropTypes.instanceOf(List),
     isLoading: PropTypes.bool
@@ -95,6 +101,13 @@ class Posts extends Component {
     deletePost(id);
   };
 
+  discussionPost = id => {
+    const {
+      routeActions: { changeLocation }
+    } = this.props;
+    changeLocation(ROUTES_ACTIONS.toDiscussion(id));
+  };
+
   render() {
     const { user, posts, isLoading } = this.props;
     const { post } = this.state;
@@ -110,7 +123,7 @@ class Posts extends Component {
               <span className="small">Welcome to the community!</span>
             </p>
             <Card>
-              <form className="form my-1">
+              <form className="form clearfix my-1">
                 <TextArea
                   placeholder="Create your post..."
                   name="post"
@@ -119,7 +132,7 @@ class Posts extends Component {
                 />
                 <Button
                   type="button"
-                  className="btn btn-primary my-1"
+                  className="btn btn-primary btn-to-right my-1"
                   onClick={event => this.createPost(event, post)}
                 >
                   Submit
@@ -138,6 +151,7 @@ class Posts extends Component {
                   onLike={this.likePost}
                   onUnLike={this.unlikePost}
                   onDelete={this.deletePost}
+                  onDiscussion={this.discussionPost}
                 />
               ))
             )}

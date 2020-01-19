@@ -9,6 +9,7 @@ import EditProfile from "../containers/EditProfile";
 import Experience from "../containers/Experience";
 import Education from "../containers/Education";
 import Posts from "../containers/Posts";
+import Discussion from "./../containers/Discussion";
 
 export {
   Landing,
@@ -21,5 +22,6 @@ export {
   EditProfile,
   Experience,
   Education,
-  Posts
+  Posts,
+  Discussion
 };

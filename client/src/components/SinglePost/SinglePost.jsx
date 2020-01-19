@@ -9,7 +9,15 @@ import { ROUTES } from "../../constants/clientRoutes";
 import Button from "../Button";
 import Card from "../Card";
 
-const SinglePost = ({ post, user, isLoading, onLike, onUnLike, onDelete }) => {
+const SinglePost = ({
+  post,
+  user,
+  isLoading,
+  onLike,
+  onUnLike,
+  onDelete,
+  onDiscussion
+}) => {
   return (
     <Card className="post bg-white p-1 my-1">
       <div className="post-details">
@@ -47,11 +55,11 @@ const SinglePost = ({ post, user, isLoading, onLike, onUnLike, onDelete }) => {
             <Button
               type="button"
               className="btn btn-primary btn-right"
-              onClick={() => console.log("discussion")}
+              onClick={() => onDiscussion(post.get("_id"))}
             >
               Discussion
               {!post.get("comments").isEmpty() && (
-                <span className="comment-count">
+                <span className="comment-count text-left">
                   {post.get("comments").size}
                 </span>
               )}
@@ -77,14 +85,16 @@ SinglePost.propTypes = {
   user: PropTypes.instanceOf(Map),
   isLoading: PropTypes.bool,
   onLike: PropTypes.func,
-  onUnLike: PropTypes.func
+  onUnLike: PropTypes.func,
+  onDiscussion: PropTypes.func
 };
 
 SinglePost.defaultProps = {
   user: Map(),
   isLoading: true,
   onLike: () => {},
-  onUnLike: () => {}
+  onUnLike: () => {},
+  onDiscussion: () => {}
 };
 
 export default SinglePost;
