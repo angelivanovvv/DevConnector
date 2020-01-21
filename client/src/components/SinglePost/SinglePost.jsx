@@ -27,7 +27,9 @@ const SinglePost = ({
         </Link>
       </div>
       <div className="post-description">
-        <p className="my-1">{post.get("text")}</p>
+        <p className="description my-1 text-center-mobile">
+          {post.get("text")}
+        </p>
         <p className="post-date">
           Posted on {<Moment format="YYYY/MM/DD">{post.get("date")}</Moment>}
         </p>

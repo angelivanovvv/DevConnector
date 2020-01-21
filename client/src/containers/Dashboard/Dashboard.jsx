@@ -185,7 +185,7 @@ class Dashbooard extends Component {
                     Welcome {user && user !== null ? user.get("name") : null}!
                   </span>
                 </p>
-                <p className="small text-center">
+                <p className="small text-center empty-message">
                   You haven't yet setup profile, click to "Create Profile".
                 </p>
                 <div className="button-container">

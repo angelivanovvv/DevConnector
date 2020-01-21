@@ -3,8 +3,8 @@
   --primary-color: #17a2b8;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
+  --danger-color: #f87884;
+  --success-color: #65e782;
   --white-color: #ffffff;
 }
 
@@ -80,6 +80,14 @@ img {
 
 .button-container {
   text-align: right;
+}
+
+.dash-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.2rem;
 }
 
 .bnt-to-left {
@@ -166,9 +174,8 @@ img {
 }
 
 .empty-message {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 100;
-  margin: 0 !important;
 }
 
 .opacity-8 {
@@ -652,8 +659,35 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
+.post-description {
+  overflow: hidden;
+}
+
+.post-description .description {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.comment-wrapper {
+  -webkit-word-break: break-word;
+  -moz-word-break: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+}
+
 /* Mobile Styles */
+
 @media (max-width: 700px) {
+  .page-wrapper {
+    padding: 0;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
   .container {
     margin-top: 8rem;
   }
@@ -673,6 +707,19 @@ button {
 
   .lead {
     font-size: 1rem;
+  }
+
+  .empty-message {
+    font-size: 0.8rem;
+  }
+
+  .text-center-mobile {
+    text-align: center;
+  }
+
+  /* Alert */
+  .alert {
+    margin: 1rem 0rem;
   }
 
   /* Navbar */
@@ -725,10 +772,8 @@ button {
     flex-direction: column;
   }
 
-  .dash-buttons a {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.2rem;
+  .table tbody td:last-child {
+    text-align: right;
   }
 
   .post {
@@ -738,4 +783,21 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+}
+
+@media (max-width: 640px) {
+  .dash-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .dash-buttons-container .btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  /* Text Styles */
 }

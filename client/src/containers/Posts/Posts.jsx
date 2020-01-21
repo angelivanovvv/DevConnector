@@ -140,7 +140,9 @@ class Posts extends Component {
               </form>
             </Card>
             {posts.isEmpty() ? (
-              <p className="small text-center my-2-top">No posts.</p>
+              <p className="small text-center my-2-top empty-message">
+                No posts.
+              </p>
             ) : (
               posts.map((post, index) => (
                 <SinglePost

@@ -69,7 +69,9 @@ class Profiles extends Component {
                 />
               ))
             ) : (
-              <p className="text-center small">No profiles found.</p>
+              <p className="text-center small empty-message">
+                No profiles found.
+              </p>
             )}
           </div>
         )}

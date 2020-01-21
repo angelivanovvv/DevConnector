@@ -11,8 +11,8 @@ const Post = ({ link, image, name, post }) => (
         <h4>{name}</h4>
       </Link>
     </div>
-    <div className="post-wrapper">
-      <p className="my-1">{post}</p>
+    <div className="post-wrapper post-description">
+      <p className="description my-1 text-center-mobile">{post}</p>
     </div>
   </Fragment>
 );
