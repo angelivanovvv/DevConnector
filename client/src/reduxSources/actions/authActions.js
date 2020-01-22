@@ -54,10 +54,10 @@ export const register = ({ name, email, password }) => {
       dispatch(loadUser());
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (err) {
-      const errors = err.response.data.errors;
+      const errors = err?.response?.data?.errors;
       if (errors)
         errors.forEach(error =>
-          dispatch(alertsActions.alert(error.msg, "danger"))
+          dispatch(alertsActions.alert(error?.msg, "danger"))
         );
       dispatch(registerFail());
     }
@@ -80,7 +80,7 @@ export const login = (email, password) => {
       dispatch(loadUser());
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (err) {
-      const errors = err.response.data.errors;
+      const errors = err?.response?.data?.errors;
       if (errors)
         errors.forEach(error =>
           dispatch(alertsActions.alert(error.msg, "danger"))

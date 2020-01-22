@@ -94,7 +94,7 @@ export const createProfile = (formData, edit = false) => {
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
-      const errors = error.response.data.errors;
+      const errors = error?.response?.data?.errors;
       if (errors)
         errors.forEach(error =>
           dispatch(alertActions.alert(error.msg, "danger"))
@@ -128,7 +128,7 @@ export const addExperience = formData => {
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
-      const errors = error.response.data.errors;
+      const errors = error?.response?.data?.errors;
       if (errors)
         errors.forEach(error =>
           dispatch(alertActions.alert(error.msg, "danger"))
@@ -160,7 +160,7 @@ export const addEducation = formData => {
       dispatch(alertActions.alert(alertMessage, "success"));
       dispatch(ROUTES_ACTIONS.toDashboard());
     } catch (error) {
-      const errors = error.response.data.errors;
+      const errors = error?.response?.data?.errors;
       if (errors)
         errors.forEach(error =>
           dispatch(alertActions.alert(error.msg, "danger"))
