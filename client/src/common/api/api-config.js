@@ -1,12 +1,13 @@
+const isProd = () =>
+  !process.env.NODE_ENV || process.env.NODE_ENV === "production" ? true : false;
+
 export const settings = {
-  protocol: "http://",
-  prodProtocol: "https://",
-  basePath: "localhost:5000",
-  prodBasePath: "whispering-tor-02190.herokuapp.com"
+  protocol: isProd() ? "https://" : "http://",
+  basePath: isProd() ? "whispering-tor-02190.herokuapp.com" : "localhost:5000"
 };
 
 export const config = Object.freeze({
-  baseURL: `${settings.prodProtocol}${settings.prodBasePath}`,
+  baseURL: `${settings.protocol}${settings.basePath}`,
   headers: {
     "Content-Type": "application/json"
   }

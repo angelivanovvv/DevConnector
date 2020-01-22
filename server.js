@@ -14,8 +14,12 @@ const postsRoute = require("./routes/posts");
 //Connect mongoDB DataBase
 mongoDB();
 
-//Enable all CORS
-app.use(cors({ origin: "https://whispering-tor-02190.herokuapp.com" }));
+//Enable CORS
+if (process.env.NODE_ENV === "production") {
+  app.use(cors({ origin: "https://whispering-tor-02190.herokuapp.com" }));
+} else {
+  app.use(cors());
+}
 
 //Init Middleware
 app.use(express.json({ extended: false }));
