@@ -15,7 +15,7 @@ const postsRoute = require("./routes/posts");
 mongoDB();
 
 //Enable all CORS
-app.use(cors());
+app.use(cors({ origin: "https://whispering-tor-02190.herokuapp.com" }));
 
 //Init Middleware
 app.use(express.json({ extended: false }));
