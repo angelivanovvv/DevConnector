@@ -27,7 +27,6 @@ app.use("/api/profile", profileRoute);
 app.use("/api/posts", postsRoute);
 
 //Serve static assets in production
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
