@@ -5,7 +5,7 @@ import { List } from "immutable";
 
 import Button from "../../Button";
 
-const Table = ({ onClick, rows, results }) => {
+const Table = ({ onClick, rows, results, buttonName }) => {
   return (
     <div className="table-container">
       <table className="table">
@@ -43,8 +43,9 @@ const Table = ({ onClick, rows, results }) => {
                     <td key={rowIndex}>
                       <Button
                         type="button"
+                        name={buttonName}
                         className="btn btn-danger"
-                        onClick={() => onClick(item.get("_id"))}
+                        onClick={event => onClick(event, item.get("_id"))}
                       >
                         Delete
                       </Button>
@@ -68,10 +69,12 @@ const Table = ({ onClick, rows, results }) => {
 Table.propTypes = {
   results: PropTypes.instanceOf(List).isRequired,
   rows: PropTypes.instanceOf(List).isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  buttonName: PropTypes.string
 };
 Table.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
+  buttonName: ""
 };
 
 export default Table;

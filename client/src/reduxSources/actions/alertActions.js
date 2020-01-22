@@ -1,14 +1,13 @@
 import uuid from "uuid";
-import * as alertTypes from "../../constants/actionTypes";
-import { transformResponse } from "../../utils/index";
+import * as actionTypes from "../../constants/actionTypes";
 
 const setAlert = (msg, alertType, id) => ({
-  type: alertTypes.SET_ALERT,
+  type: actionTypes.SET_ALERT,
   payload: { msg, alertType, id }
 });
 
 const removeAlert = () => ({
-  type: alertTypes.REMOVE_ALERT
+  type: actionTypes.REMOVE_ALERT
 });
 
 export const alert = (msg, alertType, timeout = 5000) => dispatch => {

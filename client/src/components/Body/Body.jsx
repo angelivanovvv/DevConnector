@@ -62,6 +62,7 @@ const Body = ({ isAuthenticated, isLoading }) => {
         path={PATHS.DISCUSSION + "/:postId"}
         component={Pages.Discussion}
       />
+      <Route component={Pages.NotFound} />
     </Switch>
   );
 };

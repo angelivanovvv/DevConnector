@@ -14,9 +14,11 @@ import {
   getEducation,
   getIsLoading
 } from "../../reduxSources/selectors/profileSelectors";
+import { getIsModalOpen } from "../../reduxSources/selectors/modalSelectors";
 
 import * as profileActions from "../../reduxSources/actions/profileActions";
 import * as routesActions from "../../reduxSources/actions/routesActions";
+import * as modalActions from "../../reduxSources/actions/modalActions";
 
 import { ROUTES_ACTIONS } from "../../constants/clientRoutes";
 import { experienceRows, educationRows } from "../../constants/config";
@@ -24,6 +26,7 @@ import { experienceRows, educationRows } from "../../constants/config";
 import Card from "../../components/Card";
 import Spinner from "../../components/Spinner";
 import Button from "../../components/Button";
+import Modal from "../../components/Modal";
 import DashboardActions from "../../components/Dashboard/Actions";
 import DashboardTable from "../../components/Dashboard/Table";
 
@@ -33,24 +36,28 @@ const mapStateToProps = state => ({
   isLoading: getIsLoading(state),
   profile: getProfile(state),
   experience: getExperience(state),
-  education: getEducation(state)
+  education: getEducation(state),
+  isModalOpen: getIsModalOpen(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   profileActions: bindActionCreators(profileActions, dispatch),
-  routesActions: bindActionCreators(routesActions, dispatch)
+  routesActions: bindActionCreators(routesActions, dispatch),
+  modalActions: bindActionCreators(modalActions, dispatch)
 });
 
 class Dashbooard extends Component {
   static propTypes = {
     profileActions: PropTypes.objectOf(PropTypes.func).isRequired,
     routesActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    modalActions: PropTypes.objectOf(PropTypes.func).isRequired,
     user: PropTypes.instanceOf(Map),
     isAuthenticated: PropTypes.bool,
     isLoading: PropTypes.bool,
     profile: PropTypes.instanceOf(Map),
     experience: PropTypes.instanceOf(List),
-    education: PropTypes.instanceOf(List)
+    education: PropTypes.instanceOf(List),
+    isModalOpen: PropTypes.bool
   };
   static defaultProps = {
     user: Map(),
@@ -58,8 +65,17 @@ class Dashbooard extends Component {
     isLoading: true,
     profile: Map(),
     experience: List(),
-    education: List()
+    education: List(),
+    isModalOpen: false
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalType: "",
+      id: null
+    };
+  }
 
   componentDidMount() {
     const {
@@ -68,11 +84,50 @@ class Dashbooard extends Component {
     getProfile();
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps.isModalOpen !== this.props.isModalOpen) {
+  //     this.setState({
+  //       modalType: "",
+  //       id: null
+  //     });
+  //     return true;
+  //   }
+  //   return true;
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.isModalOpen !== this.props.isModalOpen) {
+  //     this.setState({
+  //       modalType: "",
+  //       id: null
+  //     });
+  //   }
+  // }
+
   createProfile = () => {
     const {
       routesActions: { changeLocation }
     } = this.props;
     changeLocation(ROUTES_ACTIONS.toCreateProfile());
+  };
+
+  openModal = (event, id) => {
+    const {
+      modalActions: { openModal }
+    } = this.props;
+    openModal();
+    this.setState({
+      ...this.state,
+      modalType: event.currentTarget.name,
+      id: !!id ? id : null
+    });
+  };
+
+  colseModal = () => {
+    const {
+      modalActions: { closeModal }
+    } = this.props;
+    closeModal();
   };
 
   deleteExperience = id => {
@@ -103,6 +158,7 @@ class Dashbooard extends Component {
       isLoading,
       experience,
       education,
+      isModalOpen,
       routesActions
     } = this.props;
     return (
@@ -142,7 +198,8 @@ class Dashbooard extends Component {
                     <DashboardTable
                       rows={experienceRows}
                       results={experience}
-                      onClick={this.deleteExperience}
+                      onClick={this.openModal}
+                      buttonName="experience"
                     />
                   )}
                 </Card>
@@ -156,7 +213,8 @@ class Dashbooard extends Component {
                     <DashboardTable
                       rows={educationRows}
                       results={education}
-                      onClick={this.deleteEducation}
+                      onClick={this.openModal}
+                      buttonName="education"
                     />
                   )}
                 </Card>
@@ -169,7 +227,8 @@ class Dashbooard extends Component {
                   <div className="button-container">
                     <Button
                       className="btn btn-danger my-2-top"
-                      onClick={this.deleteProfile}
+                      name="account"
+                      onClick={event => this.openModal(event)}
                     >
                       <i className="fas fa-user icon-right"></i>
                       <span>Delete my accont</span>
@@ -198,6 +257,7 @@ class Dashbooard extends Component {
                 </div>
               </Card>
             )}
+            <Modal show={isModalOpen}> Dashboard </Modal>
           </Fragment>
         )}
       </div>

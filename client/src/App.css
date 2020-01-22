@@ -111,6 +111,14 @@ img {
   zoom: 1;
 }
 
+.not-found {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
@@ -439,7 +447,7 @@ button {
 }
 
 .table tbody td:last-child {
-  text-align: center;
+  text-align: right;
 }
 
 .table th {
@@ -480,6 +488,33 @@ button {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+/* Modal */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  width: 70%;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  left: 15%;
+  top: 30%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
 }
 
 /* Landing Page */
@@ -678,7 +713,6 @@ button {
 }
 
 /* Mobile Styles */
-
 @media (max-width: 700px) {
   .page-wrapper {
     padding: 0;
@@ -772,10 +806,6 @@ button {
     flex-direction: column;
   }
 
-  .table tbody td:last-child {
-    text-align: right;
-  }
-
   .post {
     grid-template-columns: 1fr;
   }
@@ -798,6 +828,8 @@ button {
     margin-right: 0;
     margin-bottom: 1rem;
   }
-
+  .not-found .x-large {
+    font-size: 2rem;
+  }
   /* Text Styles */
 }

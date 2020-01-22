@@ -2,6 +2,9 @@ import { fromJS } from "immutable";
 import { LocalStorage } from "../common/helpers";
 
 const initialState = fromJS({
+  modal: {
+    isOpen: false
+  },
   alerts: {
     errors: []
   },
