@@ -6,7 +6,7 @@ export const settings = {
 };
 
 export const config = Object.freeze({
-  baseURL: `${settings.protocol}${settings.basePath}`,
+  baseURL: `${settings.prodProtocol}${settings.prodBasePath}`,
   headers: {
     "Content-Type": "application/json"
   }
