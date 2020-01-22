@@ -82,7 +82,18 @@
     "custom-test": "node setupTest.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "jest": true
+    },
+    "globals": {
+      "shallow": true,
+      "render": true,
+      "mount": true
+    }
   },
   "browserslist": {
     "production": [
@@ -100,7 +111,9 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest-enzyme": "^7.0.2",
-    "prop-types": "^15.7.2"
+    "jsdom": "^16.0.1",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "^16.12.0"
   },
   "proxy": "http://localhost:5000",
   "jest": {
@@ -115,13 +128,13 @@
       "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/config/setupEnzyme.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
-    "testEnvironment": "jest-environment-jsdom-fourteen",
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
