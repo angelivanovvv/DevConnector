@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://angelivanov:titanik1234@devconnector-2iakh.mongodb.net/devConnector?retryWrites=true&w=majority",
+  "jwtSecret": "bearer",
+  "githubClientId": "4f8eca10ed2ecb076438",
+  "githubSecret": "03f4fdac05c5446340775bdcfadaa714e270e918"
+}
