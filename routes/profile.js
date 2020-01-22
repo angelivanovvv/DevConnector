@@ -3,6 +3,9 @@ const express = require("express");
 const request = require("request");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
+
+const validations = require("../utils/validations");
+
 const router = express.Router();
 
 const auth = require("../middleware/auth");
@@ -12,51 +15,9 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const Post = require("../models/Post");
 
-//@Validation
-const ProfileValidation = () => {
-  const validations = [
-    check("status", "Status is required")
-      .not()
-      .isEmpty(),
-    check("skills", "Skills is required")
-      .not()
-      .isEmpty()
-  ];
-  return validations;
-};
-
-const ExperienceValidation = () => {
-  const validation = [
-    check("title", "Title is required")
-      .not()
-      .isEmpty(),
-    check("company", "Company is required")
-      .not()
-      .isEmpty(),
-    check("from", "From date is required")
-      .not()
-      .isEmpty()
-  ];
-  return validation;
-};
-
-const EducationValidation = () => {
-  const validation = [
-    check("school", "School is required")
-      .not()
-      .isEmpty(),
-    check("degree", "Degree is required")
-      .not()
-      .isEmpty(),
-    check("fieldofstudy", "Field of study is required")
-      .not()
-      .isEmpty(),
-    check("from", "From date is required")
-      .not()
-      .isEmpty()
-  ];
-  return validation;
-};
+const profile = validations.profile();
+const experience = validations.experience();
+const education = validations.education();
 
 router
   //@route GET api/profile/me
@@ -110,7 +71,6 @@ router
       res.status(500).send("Server Error");
     }
   })
-
   //@route GET api/profile/github/:username
   //#desc Get user repos from Github
   //@access Public
@@ -142,7 +102,7 @@ router
   //@route POST api/profile
   //#desc Create or update user profile
   //@access Private
-  .post("/", [auth, ProfileValidation()], async (req, res) => {
+  .post("/", [auth, profile], async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -230,7 +190,7 @@ router
   //@route PUT api/profile/experience
   //#desc Add profile exprerience
   //@access Private
-  .put("/experience", [auth, ExperienceValidation()], async (req, res) => {
+  .put("/experience", [auth, experience], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -291,7 +251,7 @@ router
   //@route PUT api/profile/education
   //#desc Add profile education
   //@access Private
-  .put("/education", [auth, EducationValidation()], async (req, res) => {
+  .put("/education", [auth, education], async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

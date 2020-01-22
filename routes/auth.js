@@ -1,7 +1,10 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { check, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
+
+const validations = require("../utils/validations");
+const helpers = require("../utils/helpers");
 
 const router = express.Router();
 
@@ -9,14 +12,8 @@ const config = require("config");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 
-const LoginValidation = () => {
-  const validations = [
-    check("email", "Please enter valid email").isEmail(),
-    check("password", "Password is required").exists()
-  ];
-
-  return validations;
-};
+const validation = validations.login();
+const hasErrors = (res, errors) => helpers.hasErrors(res, errors);
 
 router
   //@route GET api/auth
@@ -35,37 +32,29 @@ router
   //@route POST api/auth
   //@desc Authenticate user & get token
   //@access Public
-  .post("/", LoginValidation(), async (req, res) => {
+  .post("/", validation, async (req, res) => {
     const errors = validationResult(req);
     const { email, password } = req.body;
 
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
+    hasErrors(res, errors);
     try {
       let user = await User.findOne({ email });
-
       if (!user) {
         return res
           .status(400)
           .json({ errors: [{ msg: "Ivalid Credantials" }] });
       }
-
       const isMatch = await bcrypt.compare(password, user.password);
-
       if (!isMatch) {
         return res
           .status(400)
           .json({ errors: [{ msg: "Ivalid Credantials" }] });
       }
-
       const payload = {
         user: {
           id: user.id
         }
       };
-
       jwt.sign(
         payload,
         config.get("jwtSecret"),
