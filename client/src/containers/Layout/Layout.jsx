@@ -8,7 +8,7 @@ import { getErrors } from "../../reduxSources/selectors/alertsSelectors";
 import { getIsModalOpen } from "../../reduxSources/selectors/modalSelectors";
 import {
   getIsAuthenticated,
-  getIsLoading
+  getIsLoading,
 } from "../../reduxSources/selectors/authSelectors";
 
 import * as authActions from "../../reduxSources/actions/authActions";
@@ -19,16 +19,16 @@ import Alert from "../../components/Alert";
 import Body from "../../components/Body";
 import Backdrop from "../../components/Backdrop";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   errors: getErrors(state),
   isAuthenticated: getIsAuthenticated(state),
   isLoading: getIsLoading(state),
-  isModalOpen: getIsModalOpen(state)
+  isModalOpen: getIsModalOpen(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   authActions: bindActionCreators(authActions, dispatch),
-  modalActions: bindActionCreators(modalActions, dispatch)
+  modalActions: bindActionCreators(modalActions, dispatch),
 });
 
 class Layout extends Component {
@@ -38,14 +38,14 @@ class Layout extends Component {
     errors: PropTypes.instanceOf(List),
     isAuthenticated: PropTypes.bool,
     isLoading: PropTypes.bool,
-    isModalOpen: PropTypes.bool
+    isModalOpen: PropTypes.bool,
   };
 
   static defaultProps = {
     errors: List(),
     isAuthenticated: false,
     isLoading: false,
-    isModalOpen: false
+    isModalOpen: false,
   };
 
   render() {
@@ -55,7 +55,7 @@ class Layout extends Component {
       isLoading,
       isModalOpen,
       authActions: { logout },
-      modalActions: { closeModal }
+      modalActions: { closeModal },
     } = this.props;
     return (
       <Fragment>
@@ -66,7 +66,7 @@ class Layout extends Component {
         />
         <div className="container">
           <Alert errors={errors} />
-          <Backdrop show={isModalOpen} clicked={closeModal} />
+          <Backdrop isOpen={isModalOpen} clicked={closeModal} />
           <Body isAuthenticated={isAuthenticated} isLoading={isLoading} />
         </div>
       </Fragment>

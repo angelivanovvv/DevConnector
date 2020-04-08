@@ -17,11 +17,14 @@ const profileReducer = (state = profileState, { type, payload }) => {
       return state.set("profile", payload).set("loading", false);
     case actionTypes.PROFILE_ERROR:
       return state.set("error", payload).set("loading", false);
+    case actionTypes.DELETE_PROFILE:
+      return state.setIn(["delete", "loading"], false);
     case actionTypes.CLEAR_PROFILE:
       return state
         .set("profile", profileState.get("profile"))
-        .set("repos", profileState.get("repos"))
-        .set("loading", true);
+        .set("repos", profileState.get("repos"));
+    case actionTypes.LOGOUT:
+      return profileState;
     default:
       return state;
   }

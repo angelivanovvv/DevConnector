@@ -1,31 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Modal = ({ show, children }) => {
+import Spinner from "../Spinner";
+
+const Modal = ({ isOpen, isLoading, children }) => {
   return (
     <div
       className="modal"
       style={{
-        transform: show ? "translateY(0)" : "translateY(-100vh)",
-        opacity: show ? "1" : "0"
+        transform: isOpen ? "translateY(0)" : "translateY(-100vh)",
+        opacity: isOpen ? "1" : "0",
       }}
     >
-      {children}
+      {isLoading ? children : <Spinner />}
     </div>
   );
 };
 
 Modal.propTypes = {
-  show: PropTypes.bool,
+  isOpen: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
-    PropTypes.any
-  ])
+    PropTypes.any,
+  ]),
 };
 Modal.defaultProps = {
-  show: false,
-  children: ""
+  children: "",
+  isLoading: false,
 };
 
 export default Modal;

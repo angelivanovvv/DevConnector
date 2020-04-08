@@ -1,4 +1,4 @@
-import { fromJS } from "immutable";
+import { fromJS, List } from "immutable";
 
 /*-------------------------------- PROFILE FORM CONFIGs --------------------------------*/
 export const profileFields = ({
@@ -6,7 +6,7 @@ export const profileFields = ({
   website,
   location,
   skills,
-  githubusername
+  githubusername,
 }) =>
   fromJS([
     {
@@ -15,7 +15,7 @@ export const profileFields = ({
       value: company,
       placeholder: "Company",
       name: "company",
-      label: "Could be your own company or one you work for"
+      label: "Could be your own company or one you work for",
     },
     {
       key: 2,
@@ -23,7 +23,7 @@ export const profileFields = ({
       value: website,
       placeholder: "Website",
       name: "website",
-      label: "Could be your own or a company website"
+      label: "Could be your own or a company website",
     },
     {
       key: 3,
@@ -31,7 +31,7 @@ export const profileFields = ({
       value: location,
       placeholder: "Location",
       name: "location",
-      label: "City & state suggested (eg. Boston, MA)"
+      label: "City & state suggested (eg. Boston, MA)",
     },
     {
       key: 4,
@@ -39,7 +39,7 @@ export const profileFields = ({
       value: skills,
       placeholder: "Skills",
       name: "skills",
-      label: "Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)"
+      label: "Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)",
     },
     {
       key: 5,
@@ -48,8 +48,8 @@ export const profileFields = ({
       placeholder: "Github Username",
       name: "githubusername",
       label:
-        "If you want your latest repos and a Github link, include your username"
-    }
+        "If you want your latest repos and a Github link, include your username",
+    },
   ]);
 
 export const mediaFields = ({
@@ -57,7 +57,7 @@ export const mediaFields = ({
   facebook,
   youtube,
   linkedin,
-  instagram
+  instagram,
 }) =>
   fromJS([
     {
@@ -66,7 +66,7 @@ export const mediaFields = ({
       value: twitter,
       placeholder: "Twitter URL",
       name: "twitter",
-      icon: "fa-twitter"
+      icon: "fa-twitter",
     },
     {
       key: 2,
@@ -74,7 +74,7 @@ export const mediaFields = ({
       value: facebook,
       placeholder: "Facebook URL",
       name: "facebook",
-      icon: "fa-facebook"
+      icon: "fa-facebook",
     },
     {
       key: 3,
@@ -82,7 +82,7 @@ export const mediaFields = ({
       value: youtube,
       placeholder: "YouTube URL",
       name: "youtube",
-      icon: "fa-youtube"
+      icon: "fa-youtube",
     },
     {
       key: 4,
@@ -90,7 +90,7 @@ export const mediaFields = ({
       value: linkedin,
       placeholder: "Linkedin URL",
       name: "linkedin",
-      icon: "fa-linkedin"
+      icon: "fa-linkedin",
     },
     {
       key: 5,
@@ -98,76 +98,75 @@ export const mediaFields = ({
       value: instagram,
       placeholder: "Instagram URL",
       name: "instagram",
-      icon: "fa-instagram"
-    }
+      icon: "fa-instagram",
+    },
   ]);
 
 export const media = fromJS([
   {
-    twitter: "fa-twitter"
+    twitter: "fa-twitter",
   },
   {
-    facebook: "fa-facebook"
+    facebook: "fa-facebook",
   },
   {
-    youtube: "fa-youtube"
+    youtube: "fa-youtube",
   },
   {
-    linkedin: "fa-linkedin"
+    linkedin: "fa-linkedin",
   },
   {
-    instagram: "fa-instagram"
-  }
+    instagram: "fa-instagram",
+  },
 ]);
 
 /*-------------------------------- SELECT FIELD CONFIGs --------------------------------*/
-
 export const options = fromJS([
   {
     key: 1,
     name: "* Select Professional Status",
-    value: "0"
+    value: "0",
   },
   {
     key: 2,
     name: "Developer",
-    value: "Developer"
+    value: "Developer",
   },
   {
     key: 3,
     name: "Junior Developer",
-    value: "Junior Developer"
+    value: "Junior Developer",
   },
   {
     key: 4,
     name: "Senior Developer",
-    value: "Senior Developer"
+    value: "Senior Developer",
   },
   {
     key: 5,
     name: "Manager",
-    value: "Manager"
+    value: "Manager",
   },
   {
     key: 6,
     name: "Student or Learning",
-    value: "Student or Learning"
+    value: "Student or Learning",
   },
   {
     key: 7,
     name: "Instructor",
-    value: "Instructor"
+    value: "Instructor",
   },
   {
     key: 8,
     name: "Intern",
-    value: "Intern"
+    value: "Intern",
   },
   {
     key: 9,
     name: "Other",
-    value: "Other"
-  }
+    value: "Other",
+  },
 ]);
 
 /*-------------------------------- SKILLS FORM CONFIGs --------------------------------*/
@@ -178,22 +177,22 @@ export const experienceFields = ({ title, company, location }) =>
       type: "text",
       value: title,
       placeholder: "* Job Title",
-      name: "title"
+      name: "title",
     },
     {
       key: 2,
       type: "text",
       value: company,
       placeholder: "* Company",
-      name: "company"
+      name: "company",
     },
     {
       key: 3,
       type: "text",
       value: location,
       placeholder: "* Location",
-      name: "location"
-    }
+      name: "location",
+    },
   ]);
 
 export const educationFields = ({ school, degree, fieldofstudy }) =>
@@ -203,22 +202,22 @@ export const educationFields = ({ school, degree, fieldofstudy }) =>
       type: "text",
       value: school,
       placeholder: "* School or Bootcamp",
-      name: "school"
+      name: "school",
     },
     {
       key: 2,
       type: "text",
       value: degree,
       placeholder: "* Degree or Certificate",
-      name: "degree"
+      name: "degree",
     },
     {
       key: 3,
       type: "text",
       value: fieldofstudy,
       placeholder: "* Field of study",
-      name: "fieldofstudy"
-    }
+      name: "fieldofstudy",
+    },
   ]);
 
 /*-------------------------------- DASHBOARD TABLE CONFIGs --------------------------------*/
@@ -227,26 +226,26 @@ export const experienceRows = fromJS([
     id: 1,
     key: "company",
     title: "Company",
-    class: ""
+    class: "",
   },
   {
     id: 2,
     key: "title",
     title: "Title",
-    class: "hide-sm"
+    class: "hide-sm",
   },
   {
     id: 3,
     key: "years",
     title: "Years",
-    class: "hide-sm"
+    class: "hide-sm",
   },
   {
     id: 4,
     key: "button",
     title: "",
-    class: ""
-  }
+    class: "",
+  },
 ]);
 
 export const educationRows = fromJS([
@@ -254,24 +253,45 @@ export const educationRows = fromJS([
     id: 5,
     key: "school",
     title: "School",
-    class: ""
+    class: "",
   },
   {
     id: 6,
     key: "degree",
     title: "Degree",
-    class: "hide-sm"
+    class: "hide-sm",
   },
   {
     id: 7,
     key: "years",
     title: "Years",
-    class: "hide-sm"
+    class: "hide-sm",
   },
   {
     id: 8,
     key: "button",
     title: "",
-    class: ""
-  }
+    class: "",
+  },
 ]);
+
+/*-------------------------------- MODAL BODY CONFIGs --------------------------------*/
+const account = fromJS({
+  type: "account",
+  title: "Delete Account.",
+  description: "Do you realy want to delete your account?",
+});
+
+const post = fromJS({
+  type: "post",
+  title: "Delete Post",
+  description: "Do you realy want to delete this post?",
+});
+
+const comment = fromJS({
+  type: "comment",
+  title: "Delete Comment",
+  description: "Do you realy want to delete this comment?",
+});
+
+export const deleteConfig = List([account, post, comment]);

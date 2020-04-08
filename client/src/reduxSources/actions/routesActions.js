@@ -1,1 +1,1 @@
-export const changeLocation = route => async dispatch => dispatch(route);
+export const changeLocation = (route) => async (dispatch) => dispatch(route);

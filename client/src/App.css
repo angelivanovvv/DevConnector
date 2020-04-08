@@ -517,6 +517,21 @@ button {
   transition: all 0.3s ease-out;
 }
 
+.modal-delete-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-delete-body .button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.modal-delete-body .button-group .btn {
+  margin-right: 10px;
+}
+
 /* Landing Page */
 .landing {
   position: absolute;

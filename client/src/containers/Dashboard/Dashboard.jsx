@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Map, List } from "immutable";
@@ -6,13 +6,14 @@ import PropTypes from "prop-types";
 
 import {
   getIsAuthenticated,
-  getUser
+  getUser,
 } from "../../reduxSources/selectors/authSelectors";
 import {
   getProfile,
   getExperience,
   getEducation,
-  getIsLoading
+  getIsLoading,
+  getIsDeleteProfileLoading,
 } from "../../reduxSources/selectors/profileSelectors";
 import { getIsModalOpen } from "../../reduxSources/selectors/modalSelectors";
 
@@ -27,26 +28,35 @@ import Card from "../../components/Card";
 import Spinner from "../../components/Spinner";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import ModalBody from "../../components/ModalBody/Delete";
 import DashboardActions from "../../components/Dashboard/Actions";
 import DashboardTable from "../../components/Dashboard/Table";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: getIsAuthenticated(state),
   user: getUser(state),
   isLoading: getIsLoading(state),
+  isDeleteProfileLoading: getIsDeleteProfileLoading(state),
   profile: getProfile(state),
   experience: getExperience(state),
   education: getEducation(state),
-  isModalOpen: getIsModalOpen(state)
+  isModalOpen: getIsModalOpen(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   profileActions: bindActionCreators(profileActions, dispatch),
   routesActions: bindActionCreators(routesActions, dispatch),
-  modalActions: bindActionCreators(modalActions, dispatch)
+  modalActions: bindActionCreators(modalActions, dispatch),
 });
 
-class Dashbooard extends Component {
+const modalState = (clear, self, event) => {
+  self.setState({
+    ...self.state,
+    modalType: clear ? "" : event.currentTarget.name,
+  });
+};
+
+class Dashbooard extends PureComponent {
   static propTypes = {
     profileActions: PropTypes.objectOf(PropTypes.func).isRequired,
     routesActions: PropTypes.objectOf(PropTypes.func).isRequired,
@@ -54,99 +64,78 @@ class Dashbooard extends Component {
     user: PropTypes.instanceOf(Map),
     isAuthenticated: PropTypes.bool,
     isLoading: PropTypes.bool,
+    isDeleteProfileLoading: PropTypes.bool,
     profile: PropTypes.instanceOf(Map),
     experience: PropTypes.instanceOf(List),
     education: PropTypes.instanceOf(List),
-    isModalOpen: PropTypes.bool
+    isModalOpen: PropTypes.bool,
   };
   static defaultProps = {
     user: Map(),
     isAuthenticated: true,
     isLoading: true,
+    isDeleteProfileLoading: true,
     profile: Map(),
     experience: List(),
     education: List(),
-    isModalOpen: false
+    isModalOpen: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       modalType: "",
-      id: null
+      id: null,
     };
   }
 
   componentDidMount() {
     const {
-      profileActions: { getProfile }
+      profileActions: { getProfile },
     } = this.props;
     getProfile();
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.isModalOpen !== this.props.isModalOpen) {
-  //     this.setState({
-  //       modalType: "",
-  //       id: null
-  //     });
-  //     return true;
-  //   }
-  //   return true;
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.isModalOpen !== this.props.isModalOpen) {
-  //     this.setState({
-  //       modalType: "",
-  //       id: null
-  //     });
-  //   }
-  // }
-
   createProfile = () => {
     const {
-      routesActions: { changeLocation }
+      routesActions: { changeLocation },
     } = this.props;
     changeLocation(ROUTES_ACTIONS.toCreateProfile());
   };
 
-  openModal = (event, id) => {
+  openModal = (event) => {
     const {
-      modalActions: { openModal }
+      modalActions: { openModal },
     } = this.props;
+    modalState(false, this, event);
     openModal();
-    this.setState({
-      ...this.state,
-      modalType: event.currentTarget.name,
-      id: !!id ? id : null
-    });
   };
 
   colseModal = () => {
     const {
-      modalActions: { closeModal }
+      modalActions: { closeModal },
     } = this.props;
+    modalState(true, this, null);
     closeModal();
   };
 
-  deleteExperience = id => {
+  deleteExperience = (id) => {
     const {
-      profileActions: { deleteExperience }
+      profileActions: { deleteExperience },
     } = this.props;
     deleteExperience(id);
   };
 
-  deleteEducation = id => {
+  deleteEducation = (id) => {
     const {
-      profileActions: { deleteEducation }
+      profileActions: { deleteEducation },
     } = this.props;
     deleteEducation(id);
   };
 
   deleteProfile = () => {
     const {
-      profileActions: { deleteProfile }
+      profileActions: { deleteProfile },
     } = this.props;
     deleteProfile();
   };
@@ -156,11 +145,13 @@ class Dashbooard extends Component {
       user,
       profile,
       isLoading,
+      isDeleteProfileLoading,
       experience,
       education,
       isModalOpen,
-      routesActions
+      routesActions,
     } = this.props;
+    const { modalType } = this.state;
     return (
       <div className="page-wrapper">
         {isLoading ? (
@@ -228,7 +219,7 @@ class Dashbooard extends Component {
                     <Button
                       className="btn btn-danger my-2-top"
                       name="account"
-                      onClick={event => this.openModal(event)}
+                      onClick={(event) => this.openModal(event)}
                     >
                       <i className="fas fa-user icon-right"></i>
                       <span>Delete my accont</span>
@@ -257,7 +248,13 @@ class Dashbooard extends Component {
                 </div>
               </Card>
             )}
-            <Modal show={isModalOpen}> Dashboard </Modal>
+            <Modal isOpen={isModalOpen} isLoading={isDeleteProfileLoading}>
+              <ModalBody
+                type={modalType}
+                deleteAction={this.deleteProfile}
+                closeAction={this.colseModal}
+              />
+            </Modal>
           </Fragment>
         )}
       </div>

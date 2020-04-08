@@ -3,30 +3,34 @@ import { LocalStorage } from "../common/helpers";
 
 const initialState = fromJS({
   modal: {
-    isOpen: false
+    isOpen: false,
   },
   alerts: {
-    errors: []
+    errors: [],
   },
   autentication: {
     token: LocalStorage.get("token"),
     isAuthenticated: null,
     loading: true,
-    user: null
+    user: null,
   },
   profile: {
     profile: null,
     profiles: [],
     repos: [],
     loading: true,
-    errors: {}
+    errors: {},
+    delete: {
+      loading: true,
+      error: {},
+    },
   },
   post: {
     post: null,
     posts: [],
     loading: true,
-    errors: {}
-  }
+    errors: {},
+  },
 });
 
 export default initialState;
