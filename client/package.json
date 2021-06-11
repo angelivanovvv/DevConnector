@@ -50,7 +50,7 @@
     "prettier": "^1.19.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.5",
-    "react-dev-utils": "^10.0.0",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-moment": "^0.9.7",
