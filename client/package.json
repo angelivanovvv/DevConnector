@@ -8,7 +8,7 @@
     "@svgr/webpack": "4.3.3",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.0.6",
@@ -71,7 +71,7 @@
     "ts-pnp": "1.1.5",
     "url-loader": "2.3.0",
     "webpack": "4.41.2",
-    "webpack-dev-server": "3.9.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
@@ -111,7 +111,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest-enzyme": "^7.0.2",
-    "jsdom": "^16.0.1",
+    "jsdom": "^16.6.0",
     "prop-types": "^15.7.2",
     "react-test-renderer": "^16.12.0"
   },
